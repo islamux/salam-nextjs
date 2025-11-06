@@ -13,7 +13,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { KhwaterData, KhwaterItem } from './src/lib/types/khwater';
+import { KhwaterData, KhwaterItem, ContentType } from './src/lib/types/khwater';
 
 // Mapping of chapter number to file name
 const CHAPTER_FILES: Record<string, string> = {

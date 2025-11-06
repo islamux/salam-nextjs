@@ -10,7 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-arabic: Arial, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --font-arabic: var(--font-amiri, serif);
+  --font-arabic-sans: var(--font-noto-arabic, sans-serif);
 }
 
 @media (prefers-color-scheme: dark) {
