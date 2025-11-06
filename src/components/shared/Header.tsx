@@ -22,7 +22,7 @@ export default function Header() {
     <nav className="hidden md:flex items-center">
     <Link
     href="/home"
-    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-4 mx-16 rtl:mx-16"
+    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-4 mx-40 rtl:mx-40"
   >
     الرئيسية
     </Link>
