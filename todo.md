@@ -1,7 +1,8 @@
 Tasks:
-- make IMPROVEMENT_PLAN.md
 - theme
 - pwd
+- make IMPROVEMENT_PLAN.md make improvement.
+- make DEVELOPER_GUID.md.. build from scratch.
 - refactoring:
 ---- make code smaller
 - add user to dashboard to give Hani to edit or add text

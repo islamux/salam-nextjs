@@ -1,8 +1,48 @@
 @import "tailwindcss";
 
+/* Local Fonts - Amiri */
+@font-face {
+  font-family: 'Amiri';
+  src: url('../assets/fonts/amiri/amiri-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('../assets/fonts/amiri/amiri-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* Local Fonts - Noto Sans Arabic */
+@font-face {
+  font-family: 'Noto Sans Arabic';
+  src: url('../assets/fonts/noto-arabic/noto-arabic-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+@font-face {
+  font-family: 'Noto Sans Arabic';
+  src: url('../assets/fonts/noto-arabic/noto-arabic-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+FB50-FDFF, U+FE70-FEFF;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-amiri: 'Amiri', serif;
+  --font-noto-arabic: 'Noto Sans Arabic', sans-serif;
 }
 
 @theme inline {
@@ -10,8 +50,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-arabic: var(--font-amiri, serif);
-  --font-arabic-sans: var(--font-noto-arabic, sans-serif);
+  --font-arabic: 'Amiri', serif;
+  --font-arabic-sans: 'Noto Sans Arabic', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,19 +64,19 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-amiri), Arial, Helvetica, sans-serif;
+  font-family: 'Amiri', Arial, Helvetica, sans-serif;
   direction: rtl;
 }
 
 /* Arabic font classes */
 .font-arabic {
-  font-family: var(--font-amiri), serif;
+  font-family: 'Amiri', serif;
   direction: rtl;
   text-align: right;
 }
 
 .font-arabic-sans {
-  font-family: var(--font-noto-arabic), sans-serif;
+  font-family: 'Noto Sans Arabic', sans-serif;
   direction: rtl;
   text-align: right;
 }
@@ -56,20 +96,20 @@ body {
 
 /* Arabic text styling */
 .arabic-text {
-  font-family: var(--font-amiri), serif;
+  font-family: 'Amiri', serif;
   line-height: 2;
   letter-spacing: 0.5px;
 }
 
 .arabic-title {
-  font-family: var(--font-amiri), serif;
+  font-family: 'Amiri', serif;
   font-weight: 700;
   font-size: 2rem;
   line-height: 1.6;
 }
 
 .arabic-ayah {
-  font-family: var(--font-amiri), serif;
+  font-family: 'Amiri', serif;
   font-size: 1.1rem;
   opacity: 0.9;
   line-height: 2;
