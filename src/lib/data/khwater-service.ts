@@ -66,12 +66,20 @@ export const getChapterMetadata = (id: string) => {
  */
 export const getAllChapters = async () => {
   const data = await loadKhwaterData();
-  const chapters = Object.entries(data.lists).map(([id, items]) => ({
-    id,
-    title: `الفصل ${id}`,
-    description: `محتوى الفصل ${id}`,
-    itemCount: items.length,
-  }));
+  const chapters = Object.entries(data.lists).map(([id, items]) => {
+    // Extract the chapter title from the first item's titles array
+    const chapterTitle = items.length > 0 && items[0].titles && items[0].titles.length > 0
+      ? items[0].titles[0].split('\n')[0] // Get the first line, remove newlines
+      : `الفصل ${id}`;
+
+    return {
+      id,
+      title: `الفصل ${id}`,
+      chapterTitle, // Add chapter title
+      description: `محتوى الفصل ${id}`,
+      itemCount: items.length,
+    };
+  });
 
   return chapters.sort((a, b) => Number(a.id) - Number(b.id));
 };

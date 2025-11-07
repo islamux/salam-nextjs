@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import ServiceWorkerRegistration from "@/components/shared/ServiceWorkerRegistration";
+import PWAInstallPrompt from "@/components/shared/PWAInstallPrompt";
 
 export const metadata: Metadata = {
   title: "خواطر - Islamic Spiritual Texts",
@@ -65,6 +66,7 @@ export default function RootLayout({
         </a>
 
         <ServiceWorkerRegistration />
+        <PWAInstallPrompt />
         <Header />
         <main id="main-content" className="flex-grow" role="main" aria-label="المحتوى الرئيسي">
           {children}

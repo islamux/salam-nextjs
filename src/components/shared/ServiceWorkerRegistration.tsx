@@ -11,7 +11,7 @@ export default function ServiceWorkerRegistration() {
             scope: "/",
           });
 
-          console.log("Service Worker registered successfully:", registration);
+          console.log("Service Worker registered successfully:", registration.scope);
 
           // Check for updates
           registration.addEventListener("updatefound", () => {
@@ -23,12 +23,38 @@ export default function ServiceWorkerRegistration() {
                   newWorker.state === "installed" &&
                   navigator.serviceWorker.controller
                 ) {
-                  // New content is available
-                  console.log("New content is available!");
+                  console.log("New service worker available, will use on next reload");
                 }
               });
             }
           });
+
+          // Force update service worker if a new one is waiting
+          if (registration.waiting) {
+            console.log("New service worker is waiting, activating...");
+            registration.waiting.postMessage({ type: "SKIP_WAITING" });
+          }
+
+          // Listen for messages from service worker
+          navigator.serviceWorker.addEventListener("message", (event) => {
+            console.log("📨 Message from service worker:", event.data);
+          });
+
+          // Check cache status after registration
+          setTimeout(async () => {
+            try {
+              const cache = await caches.open("khwater-v3-offline");
+              const keys = await cache.keys();
+              console.log("🔍 Cache Status:", {
+                name: "khwater-v3-offline",
+                totalItems: keys.length,
+                urls: keys.map(k => k.url)
+              });
+            } catch (error) {
+              console.error("Failed to check cache:", error);
+            }
+          }, 3000);
+
         } catch (error) {
           console.error("Service Worker registration failed:", error);
         }

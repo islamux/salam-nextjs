@@ -7,8 +7,7 @@ Tasks:
 ---- make code smaller
 - add user to dashboard to give Hani to edit or add text
 - language swicher
-- handling useMemo, useCallBack is neede in next
-
+- handling useMemo, useCallBack is needed in nextjs or not ???
 
 *** Maybe i will change the projct to another framework
 Because React , nextjs its power to rendering but in my current project "static rendering" dosnt need to deals with user dosnt need change in data 

@@ -82,11 +82,18 @@ export default async function HomePage() {
       </svg>
       </div>
       </div>
-      <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-      الفصل {chapter.id}
-      </h3>
+      <div className="mb-2">
+        <h3 className="text-lg font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          الفصل {chapter.id}
+        </h3>
+        {chapter.chapterTitle && (
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            {chapter.chapterTitle}
+          </p>
+        )}
+      </div>
       <p className="text-sm text-gray-600 dark:text-gray-400">
-      {chapter.itemCount} عنصر
+        {chapter.itemCount} عنصر
       </p>
       </Link>
     ))}
