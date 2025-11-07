@@ -138,6 +138,14 @@ src/
 - ✅ Deploy to production (Vercel guide)
 - ✅ Configure CI/CD pipeline (GitHub Actions)
 
+### Recent Fixes & Updates (November 2025)
+- ✅ **RTL Text Alignment Fix** (November 7, 2025)
+  - Fixed Arabic text rendering issue in `src/app/globals.css`
+  - Removed problematic CSS rule that was overriding `text-right` class
+  - All Arabic content now properly displays right-aligned
+  - Improved RTL reading experience across all 29 chapters
+  - See [RTL_TEXT_FIX.md](docs/RTL_TEXT_FIX.md) for details
+
 ## 🚀 Ready for Production!
 
 The Elm app migration is 100% complete! All 7 phases successfully implemented with:
@@ -166,6 +174,11 @@ The project includes:
    - Currently using system fonts as fallback
    - Amiri and Noto Sans Arabic fonts configured
 
+3. ~~RTL Text Alignment~~ - **FIXED** (November 7, 2025)
+   - Arabic text was not rendering properly right-aligned
+   - **Resolved**: Removed problematic CSS rule in `src/app/globals.css`
+   - All Arabic content now displays correctly in RTL
+
 ## 🎨 Tech Stack
 
 - **Framework**: Next.js 14+ (App Router)
@@ -188,6 +201,8 @@ The Elm app has been renamed to **Khwater** (خواطر - spiritual thoughts/ref
 
 - **[PERFORMANCE.md](PERFORMANCE.md)**: Detailed performance optimization guide
 - **[FLUTTER_TO_WEB_MIGRATION_PLAN.md](../FLUTTER_TO_WEB_MIGRATION_PLAN.md)**: Original migration plan
+- **[RTL_TEXT_FIX.md](docs/RTL_TEXT_FIX.md)**: RTL text alignment fix documentation
+- **[IMPROVEMENT_PLAN.md](docs/IMPROVEMENT_PLAN.md)**: Future development roadmap
 
 ## 🤝 Contributing
 

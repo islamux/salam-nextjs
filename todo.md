@@ -1,5 +1,8 @@
 Tasks:
 - theme
+- issue of arabic :
+    -- first line rtl 
+    -- second line if its short its not rtl.
 - pwd
 - make IMPROVEMENT_PLAN.md make improvement.
 - make DEVELOPER_GUID.md.. build from scratch.
