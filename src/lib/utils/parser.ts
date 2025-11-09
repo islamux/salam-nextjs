@@ -26,7 +26,7 @@ export const renderContentByOrder = (item: KhwaterItem) => {
       case 'texts':
         return {
           type: 'text',
-          content: item.texts.join(' '),
+          content: item.texts?.join(' ') || '',
           key: `text-${index}`,
         };
       case 'ayahs':

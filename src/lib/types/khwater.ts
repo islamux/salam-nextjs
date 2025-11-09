@@ -3,13 +3,19 @@
 
 export type ContentType = 'titles' | 'subtitles' | 'texts' | 'ayahs' | 'footer';
 
+export interface DetailedOrderItem {
+  type: ContentType;
+  index: number;
+}
+
 export interface KhwaterItem {
   titles?: string[];
   subtitles?: string[];
-  texts: string[];
+  texts?: string[];
   ayahs?: string[];
   footer?: string;
   order: ContentType[];
+  detailedOrder?: DetailedOrderItem[];
 }
 
 export interface KhwaterData {
