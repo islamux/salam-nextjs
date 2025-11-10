@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
-import ServiceWorkerRegistration from "@/components/shared/ServiceWorkerRegistration";
 import PWAInstallPrompt from "@/components/shared/PWAInstallPrompt";
 
 export const metadata: Metadata = {
@@ -65,7 +64,6 @@ export default function RootLayout({
           انتقل إلى المحتوى الرئيسي
         </a>
 
-        <ServiceWorkerRegistration />
         <PWAInstallPrompt />
         <Header />
         <main id="main-content" className="flex-grow" role="main" aria-label="المحتوى الرئيسي">

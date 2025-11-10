@@ -20,7 +20,6 @@ export default function PWAInstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
-  const [isCaching, setIsCaching] = useState(false);
 
   useEffect(() => {
     // Check if app is already installed
@@ -30,14 +29,6 @@ export default function PWAInstallPrompt() {
       if (isStandalone || isIOSStandalone) {
         setIsInstalled(true);
         console.log("✅ App is running in standalone mode");
-      }
-    };
-
-    // Listen for service worker activation
-    const handleSWMessage = (event: MessageEvent) => {
-      if (event.data && event.data.type === "SW_ACTIVATED") {
-        console.log("✅ Service Worker activated:", event.data.version);
-        setIsCaching(false);
       }
     };
 
@@ -65,7 +56,6 @@ export default function PWAInstallPrompt() {
       setIsInstalled(true);
       setShowInstallPrompt(false);
       setDeferredPrompt(null);
-      setIsCaching(true);
     };
 
     // Force show install prompt if the event already fired or on every page load
@@ -77,12 +67,10 @@ export default function PWAInstallPrompt() {
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
     window.addEventListener("appinstalled", handleAppInstalled);
-    navigator.serviceWorker.addEventListener("message", handleSWMessage);
 
     return () => {
       window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
       window.removeEventListener("appinstalled", handleAppInstalled);
-      navigator.serviceWorker.removeEventListener("message", handleSWMessage);
     };
   }, [isInstalled]);
 
@@ -111,28 +99,6 @@ export default function PWAInstallPrompt() {
   const handleDismissInstall = () => {
     setShowInstallPrompt(false);
   };
-
-  // Show caching banner if installing
-  if (isCaching && isInstalled) {
-    return createPortal(
-      <div className="fixed top-16 left-0 right-0 z-50 p-4 bg-blue-600 text-white shadow-lg">
-        <div className="max-w-md mx-auto">
-          <div className="flex items-center space-x-3 rtl:space-x-reverse">
-            <svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-            </svg>
-            <div className="flex-1">
-              <p className="font-semibold">تثبيت التطبيق وحفظ البيانات...</p>
-              <p className="text-sm opacity-90">Installing app and saving data for offline use</p>
-              <p className="text-xs opacity-75 mt-1">Please wait, caching all 29 chapters...</p>
-            </div>
-          </div>
-        </div>
-      </div>,
-      document.body
-    );
-  }
 
   // Don't render if not needed
   if (!showInstallPrompt) {
@@ -171,10 +137,10 @@ export default function PWAInstallPrompt() {
 
         {/* Description */}
         <p className="text-gray-600 dark:text-gray-300 text-center mb-2">
-          Install this app for a better experience and offline reading
+          Install this app for a better experience
         </p>
         <p className="text-gray-500 dark:text-gray-400 text-center mb-6 arabic-text">
-          ثبّت هذا التطبيق للحصول على تجربة أفضل والقراءة دون اتصال
+          ثبّت هذا التطبيق للحصول على تجربة أفضل
         </p>
 
         {/* Action Buttons */}
