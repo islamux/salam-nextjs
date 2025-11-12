@@ -1,0 +1,35 @@
+</salam-nextjs/
+▸ [  ].claude/
+▸ [  ].next/
+▸ [  ].vercel/
+▸ [  ]docs/
+▸ [  ]e2e/
+▸ [  ]public/
+▾ [  ]src/
+  ▸ [  ]app/
+  ▸ [  ]assets/
+  ▸ [  ]components/
+  ▾ [  ]lib/
+    ▾ [  ]data/
+      ▸ [  ]__tests__/
+        [  ]elm-data.json.bac*
+        [  ]khwater-service.ts*
+        [  ]khwater-data.json.bak*
+    ▸ [  ]types/
+    ▸ [  ]utils/
+  [  ].gitignore*
+  [  ].prettierrc.json*
+  [  ]CLAUDE.md*
+  [  ]convert-text-to-json.ts*
+  [  ]eslint.config.mjs*
+  [  ]next-env.d.ts*
+  [  ]next.config.ts*
+  [  ]package.json*
+  [  ]pnpm-lock.yaml*
+  [  ]postcss.config.mjs*
+  [  ]PWA_ENHANCEMENTS.md*
+  [  ]README.md*
+  [  ]todo.md*
+  [  ]tsconfig.json*
+  [  ]playwright.config.ts.bak*
+  [  ]vitest.config.ts.bak*
