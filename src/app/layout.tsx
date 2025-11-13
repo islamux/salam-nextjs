@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
-import PWAInstallPrompt from "@/components/shared/PWAInstallPrompt";
+// PWAInstallPrompt component removed to disable popup while keeping PWA features
 
 export const metadata: Metadata = {
   title: "خواطر - Islamic Spiritual Texts",
@@ -64,7 +64,6 @@ export default function RootLayout({
           انتقل إلى المحتوى الرئيسي
         </a>
 
-        <PWAInstallPrompt />
         <Header />
         <main id="main-content" className="flex-grow" role="main" aria-label="المحتوى الرئيسي">
           {children}

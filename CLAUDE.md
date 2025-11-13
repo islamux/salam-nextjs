@@ -99,11 +99,12 @@ vercel
 - `ShareButton.tsx` - Web Share API integration
 
 **Shared Components (`src/components/shared/`)**
-- `Header.tsx` - Navigation with theme toggle
+- `Header.tsx` - Navigation with theme toggle and install button
 - `Footer.tsx` - Site footer
 - `ThemeToggle.tsx` - Light/dark mode toggle
 - `FontSizeControl.tsx` - Font size controls for accessibility
 - `ServiceWorkerRegistration.tsx` - PWA service worker registration
+- `InstallButton.tsx` - Custom install button (optional, uncommitted)
 
 **UI Components (`src/components/ui/`)**
 - `OptimizedImage.tsx` - Next.js Image wrapper with fallbacks
@@ -147,6 +148,8 @@ vercel
 - **Offline reading** via service worker
 - **App shortcuts** for search and first chapter
 - Icons configured for all sizes (72x72 to 512x512)
+- **Custom install button** - Available in header (manual installation)
+- **No auto popup** - PWA install prompt popup disabled (November 13, 2025)
 
 ### 5. SEO & Accessibility
 - **WCAG 2.1 Level AA** compliant
@@ -290,12 +293,26 @@ NEXT_PUBLIC_APP_URL=https://your-domain.vercel.app
 
 ## Key Documentation Files
 
+### Core Documentation
 - `README.md` - Project overview and features
 - `DEPLOYMENT.md` - Complete deployment guide for Vercel
 - `TESTING.md` - Testing strategy and best practices
 - `PERFORMANCE.md` - Performance optimizations guide
 - `ACCESSIBILITY.md` - Accessibility features and WCAG compliance
 - `PHASE7_SUMMARY.md` - Phase 7 completion summary
+
+### Architecture & Testing
+- `docs/CODE_ARCHITECTURE_REFACTORING_PLAN.md` - Comprehensive refactoring plan (840+ lines)
+- `TESTING_TUTORIAL.md` - Complete testing tutorial for beginners (from senior to junior)
+- `CLEANUP_PLAN.md` - Cleanup plan for removing duplicate files and optimization
+
+### Recent Updates (November 2025)
+- **PWA Install Popup Disabled** (November 13, 2025)
+  - Removed PWAInstallPrompt component from layout
+  - Added beforeinstallprompt event handler to prevent browser popup
+  - Install button remains in header for manual installation
+- **RTL Text Alignment Fixed** (November 7, 2025)
+- **Testing Tutorial Added** (November 13, 2025)
 
 ## Arabic/RTL Support
 
