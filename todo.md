@@ -1,4 +1,5 @@
 Tasks:
+- purge css to make code smaller
 - add transliton section ar.json, en.json
 -is offline page is neccessary.
 - splite data-json to smaller paces.

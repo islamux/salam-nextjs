@@ -1,22 +1,22 @@
 import { describe, it, expect } from 'vitest';
 import { buildSearchIndex, searchIndex, highlightSearchTerms } from '../search-index';
-import { ElmItem } from '@/lib/types/elm';
+import { KhwaterItem } from '@/lib/types/khwater';
 
 describe('searchIndex', () => {
-  const mockData: Record<string, ElmItem[]> = {
+  const mockData: Record<string, KhwaterItem[]> = {
     '1': [
       {
-        titles: ['الفصل الأول'],
-        texts: ['هذا نص تجريبي للاختبار'],
-        ayahs: ['بسم الله الرحمن الرحيم'],
-        order: ['titles', 'texts'],
+        title: 'الفصل الأول',
+        text: 'هذا نص تجريبي للاختبار',
+        ayah: 'بسم الله الرحمن الرحيم',
+        order: ['title', 'text'],
       },
     ],
     '2': [
       {
-        titles: ['الفصل الثاني'],
-        texts: ['نص آخر للاختبار'],
-        order: ['titles', 'texts'],
+        title: 'الفصل الثاني',
+        text: 'نص آخر للاختبار',
+        order: ['title', 'text'],
       },
     ],
   };
@@ -39,7 +39,7 @@ describe('searchIndex', () => {
 
       const firstItem = index[0];
       expect(firstItem.content).toBe(
-        `${firstItem.titles} ${firstItem.texts} ${firstItem.ayahs}`.trim()
+        `${firstItem.title} ${firstItem.text} ${firstItem.ayah}`.trim()
       );
     });
 
@@ -84,17 +84,17 @@ describe('searchIndex', () => {
     });
 
     it('should sort results by score (highest first)', () => {
-      const testData: Record<string, ElmItem[]> = {
+      const testData: Record<string, KhwaterItem[]> = {
         '1': [
           {
-            titles: ['نص واحد'],
-            texts: ['كلمات متعددة للبحث'],
-            order: ['titles'],
+            title: 'نص واحد',
+            text: 'كلمات متعددة للبحث',
+            order: ['title'],
           },
           {
-            titles: ['نص آخر'],
-            texts: ['كلمة واحدة'],
-            order: ['titles'],
+            title: 'نص آخر',
+            text: 'كلمة واحدة',
+            order: ['title'],
           },
         ],
       };

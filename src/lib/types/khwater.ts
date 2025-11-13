@@ -1,7 +1,7 @@
 // TypeScript types for Khwater data structure
 // Based on Flutter to Next.js migration plan
 
-export type ContentType = 'titles' | 'subtitles' | 'texts' | 'ayahs' | 'footer';
+export type ContentType = 'title' | 'subtitle' | 'text' | 'ayah' | 'footer';
 
 export interface DetailedOrderItem {
   type: ContentType;
@@ -9,10 +9,10 @@ export interface DetailedOrderItem {
 }
 
 export interface KhwaterItem {
-  titles?: string[];
-  subtitles?: string[];
-  texts?: string[];
-  ayahs?: string[];
+  title?: string;
+  subtitle?: string;
+  text?: string;
+  ayah?: string;
   footer?: string;
   order: ContentType[];
   detailedOrder?: DetailedOrderItem[];
@@ -34,8 +34,8 @@ export interface KhwaterChapter {
 
 export interface FontSizeSettings {
   base: number;
-  titles: number;
-  subtitles: number;
-  texts: number;
-  ayahs: number;
+  title: number;
+  subtitle: number;
+  text: number;
+  ayah: number;
 }

@@ -27,30 +27,30 @@ export default function ContentRenderer({ item }: ContentRendererProps) {
 
   const renderWithDetailedOrder = (detailedOrder: DetailedOrderItem[]) => {
     return detailedOrder.map((orderItem, index) => {
-      const { type, index: arrayIndex } = orderItem;
+      const { type } = orderItem;
 
       switch (type) {
-        case 'titles':
-          if (item.titles?.[arrayIndex]) {
-            return <Title key={`title-${index}`} title={item.titles[arrayIndex]} />;
+        case 'title':
+          if (item.title) {
+            return <Title key={`title-${index}`} title={item.title} />;
           }
           return null;
 
-        case 'subtitles':
-          if (item.subtitles?.[arrayIndex]) {
-            return <Subtitle key={`subtitle-${index}`} subtitle={item.subtitles[arrayIndex]} />;
+        case 'subtitle':
+          if (item.subtitle) {
+            return <Subtitle key={`subtitle-${index}`} subtitle={item.subtitle} />;
           }
           return null;
 
-        case 'texts':
-          if (item.texts?.[arrayIndex]) {
-            return <Text key={`text-${index}`} text={item.texts[arrayIndex]} />;
+        case 'text':
+          if (item.text) {
+            return <Text key={`text-${index}`} text={item.text} />;
           }
           return null;
 
-        case 'ayahs':
-          if (item.ayahs?.[arrayIndex]) {
-            return <Ayah key={`ayah-${index}`} ayah={item.ayahs[arrayIndex]} />;
+        case 'ayah':
+          if (item.ayah) {
+            return <Ayah key={`ayah-${index}`} ayah={item.ayah} />;
           }
           return null;
 
@@ -69,39 +69,27 @@ export default function ContentRenderer({ item }: ContentRendererProps) {
   const renderWithSimpleOrder = (order: string[]) => {
     return order.map((type, index) => {
       switch (type) {
-        case 'titles':
-          if (item.titles?.length) {
-            return <Title key={`title-${index}`} title={item.titles.join(' ')} />;
+        case 'title':
+          if (item.title) {
+            return <Title key={`title-${index}`} title={item.title} />;
           }
           return null;
 
-        case 'subtitles':
-          if (item.subtitles?.length) {
-            return <Subtitle key={`subtitle-${index}`} subtitle={item.subtitles.join(' ')} />;
+        case 'subtitle':
+          if (item.subtitle) {
+            return <Subtitle key={`subtitle-${index}`} subtitle={item.subtitle} />;
           }
           return null;
 
-        case 'texts':
-          if (item.texts?.length) {
-            return (
-              <div key={`text-${index}`} className="mb-4">
-                {item.texts.map((text, i) => (
-                  <Text key={i} text={text} />
-                ))}
-              </div>
-            );
+        case 'text':
+          if (item.text) {
+            return <Text key={`text-${index}`} text={item.text} />;
           }
           return null;
 
-        case 'ayahs':
-          if (item.ayahs?.length) {
-            return (
-              <div key={`ayah-${index}`} className="mb-4">
-                {item.ayahs.map((ayah, i) => (
-                  <Ayah key={i} ayah={ayah} />
-                ))}
-              </div>
-            );
+        case 'ayah':
+          if (item.ayah) {
+            return <Ayah key={`ayah-${index}`} ayah={item.ayah} />;
           }
           return null;
 

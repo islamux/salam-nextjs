@@ -134,7 +134,7 @@ export const getAllChapters = async () => {
       return {
         id: chapter.id,
         title: `الفصل ${chapter.id}`,
-        chapterTitle: items[0]?.titles?.[0]?.split('\n')[0] || `الفصل ${chapter.id}`,
+        chapterTitle: items[0]?.title?.split('\n')[0] || `الفصل ${chapter.id}`,
         description: `محتوى الفصل ${chapter.id}`,
         itemCount: items.length,
       };

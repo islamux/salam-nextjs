@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
   const chapter = await getChapterData(id);
   const description =
-    chapter.slice(0, 3).map((item) => item.texts?.[0]).filter(Boolean).join(' • ') ||
+    chapter.slice(0, 3).map((item) => item.text).filter(Boolean).join(' • ') ||
     `محتوى الفصل ${id} من كتاب خواطر`;
 
   return {
@@ -83,7 +83,7 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
               position: currentId,
               name: `الفصل ${id}`,
               url: `https://elm-app.vercel.app/khwater/${id}`,
-              text: items.slice(0, 3).map((item) => item.texts?.[0]).filter(Boolean).join(' '),
+              text: items.slice(0, 3).map((item) => item.text).filter(Boolean).join(' '),
             },
             position: currentId,
             numberOfPages: 29,

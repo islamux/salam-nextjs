@@ -6,9 +6,9 @@ interface SearchIndexItem {
   chapterId: string;
   itemIndex: number;
   content: string;
-  titles?: string;
-  texts?: string;
-  ayahs?: string;
+  title?: string;
+  text?: string;
+  ayah?: string;
 }
 
 /**
@@ -21,10 +21,10 @@ export const buildSearchIndex = (data: Record<string, KhwaterItem[]>): SearchInd
     items.forEach((item, itemIndex) => {
       // Combine all searchable content
       const combinedContent = [
-        item.titles?.join(' ') || '',
-        item.texts?.join(' ') || '',
-        item.ayahs?.join(' ') || '',
-        item.subtitles?.join(' ') || '',
+        item.title || '',
+        item.text || '',
+        item.ayah || '',
+        item.subtitle || '',
       ]
         .filter(Boolean)
         .join(' ')
@@ -36,9 +36,9 @@ export const buildSearchIndex = (data: Record<string, KhwaterItem[]>): SearchInd
           chapterId,
           itemIndex,
           content: combinedContent,
-          titles: item.titles?.join(' '),
-          texts: item.texts?.join(' '),
-          ayahs: item.ayahs?.join(' '),
+          title: item.title,
+          text: item.text,
+          ayah: item.ayah,
         });
       }
     });
@@ -76,12 +76,12 @@ export const searchIndex = (
       }
 
       // Title matches get higher score
-      if (item.titles?.toLowerCase().includes(term)) {
+      if (item.title?.toLowerCase().includes(term)) {
         totalScore += 2;
       }
 
       // Ayah matches get medium score
-      if (item.ayahs?.toLowerCase().includes(term)) {
+      if (item.ayah?.toLowerCase().includes(term)) {
         totalScore += 1.5;
       }
     });
