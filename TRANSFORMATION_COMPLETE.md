@@ -124,5 +124,13 @@ November 13, 2025
 
 After successful transformation and validation, the `texts-original` folder (containing reference Dart files) has been removed from the repository as it was only needed during the transformation process.
 
+## Post-Transformation Corrections
+
+### Chapter 1 Accuracy Fix (November 13, 2025)
+- **Issue**: Chapter 1 was missing `ayahHadithOneTwentyEight_3` ("وما كان ربك ليهلك القرى بظلم وأهلها مُصلحون")
+- **Solution**: Added missing ayah item between `elmTextOneTwentyEight_3` and `elmTextOneTwentyNine_1`
+- **Result**: Chapter 1 now has 95 items with correct structure matching Dart source `elm_text_ders_one.dart`
+- **Verification**: JSON syntax validated, rendering verified, structure confirmed aligned with source
+
 ## Next Steps
 The transformation is complete. All chapters are ready for production use with the new simplified structure that exactly matches the original Dart file organization.
