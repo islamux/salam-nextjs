@@ -2,32 +2,33 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
+import { translations } from "@/lib/translations";
 // PWAInstallPrompt component removed to disable popup while keeping PWA features
 
 export const metadata: Metadata = {
-  title: "خواطر - Islamic Spiritual Texts",
-  description: "Islamic spiritual texts and chapters",
+  title: translations.app.nameWithSubtitle,
+  description: translations.app.description,
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "خواطر",
+    title: translations.app.name,
   },
-  applicationName: "خواطر",
-  authors: [{ name: "Khwater Project" }],
+  applicationName: translations.app.name,
+  authors: [{ name: translations.app.author }],
   keywords: ["Islamic", "spiritual", "texts", "Arabic", "Khwater"],
   openGraph: {
     type: "website",
     locale: "ar_SA",
     url: "https://elm-app.vercel.app",
-    title: "خواطر - Islamic Spiritual Texts",
-    description: "Islamic spiritual texts and chapters",
-    siteName: "خواطر",
+    title: translations.app.nameWithSubtitle,
+    description: translations.app.description,
+    siteName: translations.app.name,
   },
   twitter: {
     card: "summary_large_image",
-    title: "خواطر - Islamic Spiritual Texts",
-    description: "Islamic spiritual texts and chapters",
+    title: translations.app.nameWithSubtitle,
+    description: translations.app.description,
   },
 };
 
@@ -50,22 +51,21 @@ export default function RootLayout({
         <meta name="theme-color" content="#2563eb" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="خواطر" />
+        <meta name="apple-mobile-web-app-title" content={translations.app.name} />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
       </head>
       <body
         className="antialiased font-arabic min-h-screen flex flex-col bg-white dark:bg-gray-950"
       >
-        {/* Skip to main content link for screen readers */}
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          انتقل إلى المحتوى الرئيسي
+          {translations.nav.skipToContent}
         </a>
 
         <Header />
-        <main id="main-content" className="flex-grow" role="main" aria-label="المحتوى الرئيسي">
+        <main id="main-content" className="flex-grow" role="main" aria-label={translations.nav.mainContent}>
           {children}
         </main>
         <Footer />

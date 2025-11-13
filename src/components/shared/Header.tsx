@@ -6,16 +6,18 @@ import Link from 'next/link';
 import { useState } from 'react';
 import FontSizeControl from './FontSizeControl';
 import ThemeToggle from './ThemeToggle';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { nav, app } = useTranslation();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/home" className="flex items-center space-x-2 rtl:space-x-reverse">
-          <span className="text-2xl font-bold arabic-title">خواطر</span>
+          <span className="text-2xl font-bold arabic-title">{app.name}</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -24,13 +26,13 @@ export default function Header() {
             href="/home"
             className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-4 mx-40 rtl:mx-40"
           >
-            الرئيسية
+            {nav.home}
           </Link>
           <Link
             href="/search"
             className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-4"
           >
-            بحث
+            {nav.search}
           </Link>
         </nav>
 
@@ -43,7 +45,7 @@ export default function Header() {
           <button
             className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label={nav.menuToggle}
           >
             <svg
               className="w-6 h-6"
@@ -80,14 +82,14 @@ export default function Header() {
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              الرئيسية
+              {nav.home}
             </Link>
             <Link
               href="/search"
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              بحث
+              {nav.search}
             </Link>
           </nav>
         </div>
