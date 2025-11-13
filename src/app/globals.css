@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-amiri: 'Amiri', 'Scheherazade New', 'Times New Roman', serif;
+  --font-noto-arabic: 'Noto Sans Arabic', 'Arial Unicode MS', Arial, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-arabic: var(--font-amiri), serif;
+  --font-arabic-sans: var(--font-noto-arabic), sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-amiri), 'Arial Unicode MS', Arial, sans-serif;
+  direction: rtl;
+}
+
+/* Arabic font classes */
+.font-arabic {
+  font-family: var(--font-amiri), serif;
+  direction: rtl;
+  text-align: right;
+}
+
+.font-arabic-sans {
+  font-family: var(--font-noto-arabic), sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+/* RTL support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+/* Arabic text styling */
+.arabic-text {
+  font-family: var(--font-amiri), serif;
+  line-height: 2;
+  letter-spacing: 0.5px;
+}
+
+.arabic-title {
+  font-family: var(--font-amiri), serif;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.6;
+}
+
+.arabic-ayah {
+  font-family: var(--font-amiri), serif;
+  font-size: 1.1rem;
+  opacity: 0.9;
+  line-height: 2;
+}
