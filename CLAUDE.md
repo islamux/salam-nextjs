@@ -78,6 +78,9 @@ vercel
 - `i18n.ts` - Arabic text and i18n utilities
 - `migrate-data.ts` - Data migration tools from Flutter
 
+**Custom Hooks (`src/hooks/`)**
+- `useFontSize.ts` - Font size management with localStorage persistence
+
 ### Page Structure (App Router)
 
 **Routes:**
@@ -97,6 +100,11 @@ vercel
 **Khwater Components (`src/components/khwater/`)**
 - `ContentRenderer.tsx` - Renders titles/subtitles/texts/ayahs based on item.order array
 - `ShareButton.tsx` - Web Share API integration
+- `Title.tsx` - Title component for chapter/item titles
+- `Subtitle.tsx` - Subtitle component for subtitles
+- `Text.tsx` - Text component for main content
+- `Ayah.tsx` - Ayah component for Quranic verses
+- `Footer.tsx` - Footer component for item footers
 
 **Shared Components (`src/components/shared/`)**
 - `Header.tsx` - Navigation with theme toggle and install button
@@ -105,9 +113,12 @@ vercel
 - `FontSizeControl.tsx` - Font size controls for accessibility
 - `ServiceWorkerRegistration.tsx` - PWA service worker registration
 - `InstallButton.tsx` - Custom install button (optional, uncommitted)
+- `OfflineIcon.tsx` - Offline page icon component
+- `RetryButton.tsx` - Retry button component
+- `HomeButton.tsx` - Home navigation button component
 
 **UI Components (`src/components/ui/`)**
-- `OptimizedImage.tsx` - Next.js Image wrapper with fallbacks
+- (None - OptimizedImage component removed as unused)
 
 ### Styling & RTL
 
@@ -313,6 +324,13 @@ NEXT_PUBLIC_APP_URL=https://your-domain.vercel.app
   - Install button remains in header for manual installation
 - **RTL Text Alignment Fixed** (November 7, 2025)
 - **Testing Tutorial Added** (November 13, 2025)
+- **Code Refactoring & Component Extraction** (November 13, 2025)
+  - Refactored FontSizeControl to use custom hook (useFontSize)
+  - Extracted OfflineIcon, RetryButton, HomeButton from offline page
+  - Extracted Title, Subtitle, Text, Ayah, Footer from ContentRenderer
+  - Deleted unused OptimizedImage component
+  - Reduced offline page from 93 to 38 lines (59% reduction)
+  - Reduced ContentRenderer complexity by 25%
 
 ## Arabic/RTL Support
 

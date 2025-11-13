@@ -4,6 +4,11 @@
 'use client';
 
 import { KhwaterItem, DetailedOrderItem } from '@/lib/types/khwater';
+import Title from './Title';
+import Subtitle from './Subtitle';
+import Text from './Text';
+import Ayah from './Ayah';
+import Footer from './Footer';
 
 interface ContentRendererProps {
   item: KhwaterItem;
@@ -11,7 +16,6 @@ interface ContentRendererProps {
 
 export default function ContentRenderer({ item }: ContentRendererProps) {
   const renderContentByOrder = () => {
-    // Use detailedOrder if available, otherwise fall back to simple order
     const shouldUseDetailedOrder = item.detailedOrder && item.detailedOrder.length > 0;
 
     if (shouldUseDetailedOrder) {
@@ -27,59 +31,34 @@ export default function ContentRenderer({ item }: ContentRendererProps) {
 
       switch (type) {
         case 'titles':
-          if (!item.titles || !item.titles[arrayIndex]) return null;
-          return (
-            <h1
-              key={`title-${index}`}
-              className="arabic-title text-right mb-6 text-2xl font-bold"
-            >
-              {item.titles[arrayIndex]}
-            </h1>
-          );
+          if (item.titles?.[arrayIndex]) {
+            return <Title key={`title-${index}`} title={item.titles[arrayIndex]} />;
+          }
+          return null;
 
         case 'subtitles':
-          if (!item.subtitles || !item.subtitles[arrayIndex]) return null;
-          return (
-            <h2
-              key={`subtitle-${index}`}
-              className="text-right mb-4 text-xl font-semibold"
-            >
-              {item.subtitles[arrayIndex]}
-            </h2>
-          );
+          if (item.subtitles?.[arrayIndex]) {
+            return <Subtitle key={`subtitle-${index}`} subtitle={item.subtitles[arrayIndex]} />;
+          }
+          return null;
 
         case 'texts':
-          if (!item.texts || !item.texts[arrayIndex]) return null;
-          return (
-            <p
-              key={`text-${index}`}
-              className="arabic-text text-right leading-loose mb-3"
-            >
-              {item.texts[arrayIndex]}
-            </p>
-          );
+          if (item.texts?.[arrayIndex]) {
+            return <Text key={`text-${index}`} text={item.texts[arrayIndex]} />;
+          }
+          return null;
 
         case 'ayahs':
-          if (!item.ayahs || !item.ayahs[arrayIndex]) return null;
-          return (
-            <p
-              key={`ayah-${index}`}
-              className="arabic-ayah text-right opacity-90 mb-2 leading-loose"
-            >
-              {item.ayahs[arrayIndex]}
-            </p>
-          );
+          if (item.ayahs?.[arrayIndex]) {
+            return <Ayah key={`ayah-${index}`} ayah={item.ayahs[arrayIndex]} />;
+          }
+          return null;
 
         case 'footer':
-          if (!item.footer) return null;
-          return (
-            <footer
-              key={`footer-${index}`}
-              className="text-right mt-8 pt-4 border-t border-gray-300 text-sm"
-            >
-              {item.footer}
-            </footer>
-          );
+          if (item.footer) {
+            return <Footer key={`footer-${index}`} footer={item.footer} />;
+          }
+          return null;
 
         default:
           return null;
@@ -91,67 +70,46 @@ export default function ContentRenderer({ item }: ContentRendererProps) {
     return order.map((type, index) => {
       switch (type) {
         case 'titles':
-          if (!item.titles || item.titles.length === 0) return null;
-          return (
-            <h1
-              key={`title-${index}`}
-              className="arabic-title text-right mb-6 text-2xl font-bold"
-            >
-              {item.titles.join(' ')}
-            </h1>
-          );
+          if (item.titles?.length) {
+            return <Title key={`title-${index}`} title={item.titles.join(' ')} />;
+          }
+          return null;
 
         case 'subtitles':
-          if (!item.subtitles || item.subtitles.length === 0) return null;
-          return (
-            <h2
-              key={`subtitle-${index}`}
-              className="text-right mb-4 text-xl font-semibold"
-            >
-              {item.subtitles.join(' ')}
-            </h2>
-          );
+          if (item.subtitles?.length) {
+            return <Subtitle key={`subtitle-${index}`} subtitle={item.subtitles.join(' ')} />;
+          }
+          return null;
 
         case 'texts':
-          if (!item.texts || item.texts.length === 0) return null;
-          return (
-            <div key={`text-${index}`} className="mb-4">
-              {item.texts.map((text, i) => (
-                <p
-                  key={i}
-                  className="arabic-text text-right leading-loose mb-3"
-                >
-                  {text}
-                </p>
-              ))}
-            </div>
-          );
+          if (item.texts?.length) {
+            return (
+              <div key={`text-${index}`} className="mb-4">
+                {item.texts.map((text, i) => (
+                  <Text key={i} text={text} />
+                ))}
+              </div>
+            );
+          }
+          return null;
 
         case 'ayahs':
-          if (!item.ayahs || item.ayahs.length === 0) return null;
-          return (
-            <div key={`ayah-${index}`} className="mb-4">
-              {item.ayahs.map((ayah, i) => (
-                <p
-                  key={i}
-                  className="arabic-ayah text-right opacity-90 mb-2 leading-loose"
-                >
-                  {ayah}
-                </p>
-              ))}
-            </div>
-          );
+          if (item.ayahs?.length) {
+            return (
+              <div key={`ayah-${index}`} className="mb-4">
+                {item.ayahs.map((ayah, i) => (
+                  <Ayah key={i} ayah={ayah} />
+                ))}
+              </div>
+            );
+          }
+          return null;
 
         case 'footer':
-          if (!item.footer) return null;
-          return (
-            <footer
-              key={`footer-${index}`}
-              className="text-right mt-8 pt-4 border-t border-gray-300 text-sm"
-            >
-              {item.footer}
-            </footer>
-          );
+          if (item.footer) {
+            return <Footer key={`footer-${index}`} footer={item.footer} />;
+          }
+          return null;
 
         default:
           return null;

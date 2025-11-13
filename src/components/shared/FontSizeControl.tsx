@@ -2,49 +2,16 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
-
-const FONT_SIZE_KEY = 'elm-font-size';
-const MIN_SIZE = 14;
-const MAX_SIZE = 24;
-const DEFAULT_SIZE = 16;
+import { useFontSize } from '@/hooks/useFontSize';
 
 export default function FontSizeControl() {
-  const [fontSize, setFontSize] = useState(DEFAULT_SIZE);
-
-  useEffect(() => {
-    // Load saved font size from localStorage
-    const savedSize = localStorage.getItem(FONT_SIZE_KEY);
-    if (savedSize) {
-      const size = parseInt(savedSize);
-      setFontSize(size);
-      document.documentElement.style.fontSize = `${size}px`;
-    }
-  }, []);
-
-  const increaseFontSize = () => {
-    if (fontSize < MAX_SIZE) {
-      const newSize = fontSize + 1;
-      setFontSize(newSize);
-      localStorage.setItem(FONT_SIZE_KEY, newSize.toString());
-      document.documentElement.style.fontSize = `${newSize}px`;
-    }
-  };
-
-  const decreaseFontSize = () => {
-    if (fontSize > MIN_SIZE) {
-      const newSize = fontSize - 1;
-      setFontSize(newSize);
-      localStorage.setItem(FONT_SIZE_KEY, newSize.toString());
-      document.documentElement.style.fontSize = `${newSize}px`;
-    }
-  };
+  const { fontSize, increaseFontSize, decreaseFontSize, canIncrease, canDecrease } = useFontSize();
 
   return (
     <div className="flex items-center space-x-2 rtl:space-x-reverse">
       <button
         onClick={decreaseFontSize}
-        disabled={fontSize <= MIN_SIZE}
+        disabled={!canDecrease}
         className="p-1.5 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         aria-label="تصغير الخط"
         title="تصغير الخط"
@@ -68,7 +35,7 @@ export default function FontSizeControl() {
       </span>
       <button
         onClick={increaseFontSize}
-        disabled={fontSize >= MAX_SIZE}
+        disabled={!canIncrease}
         className="p-1.5 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         aria-label="تكبير الخط"
         title="تكبير الخط"
