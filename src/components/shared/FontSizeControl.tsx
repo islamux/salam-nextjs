@@ -3,9 +3,11 @@
 'use client';
 
 import { useFontSize } from '@/hooks/useFontSize';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function FontSizeControl() {
   const { fontSize, increaseFontSize, decreaseFontSize, canIncrease, canDecrease } = useFontSize();
+  const { ui } = useTranslation();
 
   return (
     <div className="flex items-center space-x-2 rtl:space-x-reverse">
@@ -13,8 +15,8 @@ export default function FontSizeControl() {
         onClick={decreaseFontSize}
         disabled={!canDecrease}
         className="p-1.5 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-        aria-label="تصغير الخط"
-        title="تصغير الخط"
+        aria-label={ui.fontSize.decrease}
+        title={ui.fontSize.decrease}
       >
         <svg
           className="w-5 h-5"
@@ -37,8 +39,8 @@ export default function FontSizeControl() {
         onClick={increaseFontSize}
         disabled={!canIncrease}
         className="p-1.5 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-        aria-label="تكبير الخط"
-        title="تكبير الخط"
+        aria-label={ui.fontSize.increase}
+        title={ui.fontSize.increase}
       >
         <svg
           className="w-5 h-5"

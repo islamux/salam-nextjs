@@ -82,24 +82,12 @@
       "name": "بحث",
       "short_name": "بحث",
       "description": "Search content",
-      "url": "/search",
-      "icons": [
-        {
-          "src": "/icons/search-icon.png",
-          "sizes": "96x96"
-        }
-      ]
+      "url": "/search"
     },
     {
       "name": "الفصل الأول",
       "short_name": "الفصل 1",
-      "url": "/elm/1",
-      "icons": [
-        {
-          "src": "/icons/chapter-icon.png",
-          "sizes": "96x96"
-        }
-      ]
+      "url": "/khwater/1"
     }
   ],
   "related_applications": [],

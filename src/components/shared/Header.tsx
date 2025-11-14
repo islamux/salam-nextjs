@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import FontSizeControl from './FontSizeControl';
 import ThemeToggle from './ThemeToggle';
+import InstallButton from './InstallButton';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Header() {
@@ -40,6 +41,7 @@ export default function Header() {
         <div className="flex items-center space-x-2 rtl:space-x-reverse">
           <FontSizeControl />
           <ThemeToggle />
+          <InstallButton />
 
           {/* Mobile menu button */}
           <button

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getChapterData, getAllChapterIds } from '@/lib/data/khwater-service';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
+import { translations } from '@/lib/translations';
 
 const ContentRenderer = dynamic(() => import('@/components/khwater/ContentRenderer'), {
   loading: () => <div className="animate-pulse h-32 bg-gray-200 dark:bg-gray-700 rounded" />,
@@ -30,26 +31,26 @@ export async function generateMetadata({ params }: PageProps) {
   const chapter = await getChapterData(id);
   const description =
     chapter.slice(0, 3).map((item) => item.text).filter(Boolean).join(' • ') ||
-    `محتوى الفصل ${id} من كتاب خواطر`;
+    translations.chapter.contentOfBook(id);
 
   return {
-    title: `الفصل ${id} - كتاب خواطر`,
-    description: `اقرأ الفصل ${id} من كتاب خواطر. ${description}`,
-    keywords: `كتاب خواطر, فصل ${id}, نصوص إسلامية`,
+    title: translations.chapter.contentTitle(id),
+    description: translations.chapter.contentDescription(id),
+    keywords: translations.chapter.keywords(id),
     openGraph: {
-      title: `الفصل ${id} - كتاب خواطر`,
-      description: `اقرأ الفصل ${id} من كتاب خواطر`,
+      title: translations.chapter.contentTitle(id),
+      description: translations.share.readChapter(id),
       url: `https://elm-app.vercel.app/khwater/${id}`,
-      siteName: 'خواطر - Islamic Spiritual Texts',
+      siteName: translations.app.nameWithSubtitle,
       locale: 'ar_SA',
       type: 'article',
       publishedTime: new Date().toISOString(),
-      authors: ['Khwater Project'],
+      authors: [translations.app.author],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `الفصل ${id} - كتاب خواطر`,
-      description: `اقرأ الفصل ${id} من كتاب خواطر`,
+      title: translations.chapter.contentTitle(id),
+      description: translations.share.readChapter(id),
       creator: '@khwater_project',
     },
     alternates: { canonical: `/khwater/${id}` },
@@ -74,14 +75,14 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Book',
-            name: 'خواطر - Islamic Spiritual Texts',
+            name: translations.app.nameWithSubtitle,
             bookFormat: 'https://schema.org/EBook',
             inLanguage: 'ar',
-            author: { '@type': 'Organization', name: 'Khwater Project' },
+            author: { '@type': 'Organization', name: translations.app.author },
             hasPart: {
               '@type': 'Book',
               position: currentId,
-              name: `الفصل ${id}`,
+              name: translations.chapter.title(id),
               url: `https://elm-app.vercel.app/khwater/${id}`,
               text: items.slice(0, 3).map((item) => item.text).filter(Boolean).join(' '),
             },
@@ -96,8 +97,8 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
 
       <div className="mb-8">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm text-gray-600 dark:text-gray-400">الفصل {id} من 29</span>
-          <ShareButton chapterId={id} chapterTitle={`الفصل ${id}`} />
+          <span className="text-sm text-gray-600 dark:text-gray-400">{translations.chapter.pageTitle(Number(id))}</span>
+          <ShareButton chapterId={id} chapterTitle={translations.chapter.title(id)} />
         </div>
         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
           <div className="bg-blue-600 h-2 rounded-full transition-all duration-300" style={{ width: `${(currentId / 29) * 100}%` }} />
@@ -105,7 +106,7 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
       </div>
 
       <header className="text-center mb-12">
-        <h1 className="arabic-title text-4xl font-bold mb-4">الفصل {id}</h1>
+        <h1 className="arabic-title text-4xl font-bold mb-4">{translations.chapter.pageHeader(Number(id))}</h1>
       </header>
 
       <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
@@ -118,21 +119,21 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
         </div>
       </article>
 
-      <nav className="flex justify-between items-center mt-12" aria-label="تنقل بين الفصول">
+      <nav className="flex justify-between items-center mt-12" aria-label={translations.chapter.ariaNavigate}>
         <div>
           {hasPrevious && (
-            <Link href={`/khwater/${currentId - 1}`} className="inline-flex items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors" aria-label={`انتقل إلى الفصل ${currentId - 1}`}>
+            <Link href={`/khwater/${currentId - 1}`} className="inline-flex items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors" aria-label={translations.chapter.ariaPrevious(currentId - 1)}>
               <svg className="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              الفصل السابق
+              {translations.chapter.previous}
             </Link>
           )}
         </div>
         <div>
           {hasNext && (
-            <Link href={`/khwater/${currentId + 1}`} className="inline-flex items-center px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 rounded-lg transition-colors" aria-label={`انتقل إلى الفصل ${currentId + 1}`}>
-              الفصل التالي
+            <Link href={`/khwater/${currentId + 1}`} className="inline-flex items-center px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 rounded-lg transition-colors" aria-label={translations.chapter.ariaNext(currentId + 1)}>
+              {translations.chapter.next}
               <svg className="w-5 h-5 ml-2 rtl:ml-0 rtl:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>

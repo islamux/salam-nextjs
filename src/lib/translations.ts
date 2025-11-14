@@ -8,6 +8,7 @@ export const translations = {
     nameWithSubtitle: 'خواطر - Islamic Spiritual Texts',
     description: 'Islamic spiritual texts and chapters',
     author: 'Khwater Project',
+    installApp: 'تثبيت التطبيق',
   },
 
   // Navigation
@@ -30,6 +31,13 @@ export const translations = {
     contentDescription: (id: string | number) => `اقرأ الفصل ${id} من كتاب خواطر`,
     contentOfBook: (id: string | number) => `محتوى الفصل ${id} من كتاب خواطر`,
     keywords: (id: string | number) => `كتاب خواطر, فصل ${id}, نصوص إسلامية`,
+
+    // Additional chapter page strings
+    pageTitle: (id: number) => `الفصل ${id} من 29`,
+    pageHeader: (id: number) => `الفصل ${id}`,
+    ariaNavigate: 'تنقل بين الفصول',
+    ariaPrevious: (num: number) => `انتقل إلى الفصل ${num}`,
+    ariaNext: (num: number) => `انتقل إلى الفصل ${num}`,
   },
 
   // Offline page
@@ -52,12 +60,53 @@ export const translations = {
 
   // Search
   search: {
+    title: 'بحث في المحتوى',
+    label: 'بحث في المحتوى',
+    placeholder: 'ابحث في النصوص والأيات...',
+    ariaLabel: 'بحث في المحتوى',
     help: 'اكتب كلمات للبحث في جميع فصول كتاب خواطر',
+    loading: 'جاري البحث...',
+    noResults: 'لم يتم العثور على نتائج',
+    resultsFound: (count: number) => `تم العثور على نتائج في ${count} فصل`,
+    viewChapter: 'عرض الفصل كاملاً ←',
   },
 
   // Share
   share: {
     readChapter: (id: string | number) => `اقرأ الفصل ${id} من كتاب خواطر`,
+    defaultTitle: (id: string | number) => `الفصل ${id} - كتاب خواطر`,
+    defaultText: (id: string | number) => `اقرأ الفصل ${id} من كتاب خواطر`,
+    ariaLabel: 'مشاركة الفصل',
+    label: 'مشاركة',
+    copied: 'تم النسخ!',
+  },
+
+  // UI Controls
+  ui: {
+    fontSize: {
+      decrease: 'تصغير الخط',
+      increase: 'تكبير الخط',
+    },
+    theme: {
+      toggle: {
+        toDark: 'الوضع المظلم',
+        toLight: 'الوضع المضيء',
+      },
+      ariaToggle: (mode: 'light' | 'dark') =>
+        mode === 'light' ? 'Switch to dark mode' : 'Switch to light mode',
+    },
+  },
+
+  // Home page
+  home: {
+    title: 'خواطر - جميع الفصول',
+    bookName: 'كتاب خواطر',
+    subtitle: 'خواطر عن الدين والحياة',
+    introductionCount: (count: number) => `${count} مقدمة`,
+    searchInContent: 'بحث في المحتوى',
+    allChapters: 'جميع الفصول',
+    chapter: (id: number) => `الفصل ${id}`,
+    itemCount: (count: number) => `${count} عنصر`,
   },
 
   // Accessibility

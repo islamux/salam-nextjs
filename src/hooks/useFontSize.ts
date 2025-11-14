@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import useLocalStorage from './useLocalStorage';
 
 const FONT_SIZE_KEY = 'elm-font-size';
 const MIN_SIZE = 14;
@@ -14,33 +15,22 @@ export interface UseFontSizeReturn {
 }
 
 export function useFontSize(): UseFontSizeReturn {
-  const [fontSize, setFontSize] = useState(DEFAULT_SIZE);
+  const { value: fontSize, setValue: setFontSize } = useLocalStorage<number>(FONT_SIZE_KEY, DEFAULT_SIZE);
 
+  // Apply font size to document when it changes
   useEffect(() => {
-    // Load saved font size from localStorage
-    const savedSize = localStorage.getItem(FONT_SIZE_KEY);
-    if (savedSize) {
-      const size = parseInt(savedSize);
-      setFontSize(size);
-      document.documentElement.style.fontSize = `${size}px`;
-    }
-  }, []);
+    document.documentElement.style.fontSize = `${fontSize}px`;
+  }, [fontSize]);
 
   const increaseFontSize = () => {
     if (fontSize < MAX_SIZE) {
-      const newSize = fontSize + 1;
-      setFontSize(newSize);
-      localStorage.setItem(FONT_SIZE_KEY, newSize.toString());
-      document.documentElement.style.fontSize = `${newSize}px`;
+      setFontSize(fontSize + 1);
     }
   };
 
   const decreaseFontSize = () => {
     if (fontSize > MIN_SIZE) {
-      const newSize = fontSize - 1;
-      setFontSize(newSize);
-      localStorage.setItem(FONT_SIZE_KEY, newSize.toString());
-      document.documentElement.style.fontSize = `${newSize}px`;
+      setFontSize(fontSize - 1);
     }
   };
 

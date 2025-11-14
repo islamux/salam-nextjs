@@ -36,6 +36,7 @@ export function useTranslation() {
         nameWithSubtitle: translations.app.nameWithSubtitle,
         description: translations.app.description,
         author: translations.app.author,
+        installApp: translations.app.installApp,
       },
 
       nav: {
@@ -57,6 +58,11 @@ export function useTranslation() {
         contentDescription: translations.chapter.contentDescription,
         contentOfBook: translations.chapter.contentOfBook,
         keywords: translations.chapter.keywords,
+        pageTitle: translations.chapter.pageTitle,
+        pageHeader: translations.chapter.pageHeader,
+        ariaNavigate: translations.chapter.ariaNavigate,
+        ariaPrevious: translations.chapter.ariaPrevious,
+        ariaNext: translations.chapter.ariaNext,
       },
 
       offline: {
@@ -76,11 +82,49 @@ export function useTranslation() {
       },
 
       search: {
+        title: translations.search.title,
+        label: translations.search.label,
+        placeholder: translations.search.placeholder,
+        ariaLabel: translations.search.ariaLabel,
         help: translations.search.help,
+        loading: translations.search.loading,
+        noResults: translations.search.noResults,
+        resultsFound: translations.search.resultsFound,
+        viewChapter: translations.search.viewChapter,
       },
 
       share: {
         readChapter: translations.share.readChapter,
+        defaultTitle: translations.share.defaultTitle,
+        defaultText: translations.share.defaultText,
+        ariaLabel: translations.share.ariaLabel,
+        label: translations.share.label,
+        copied: translations.share.copied,
+      },
+
+      ui: {
+        fontSize: {
+          decrease: translations.ui.fontSize.decrease,
+          increase: translations.ui.fontSize.increase,
+        },
+        theme: {
+          toggle: {
+            toDark: translations.ui.theme.toggle.toDark,
+            toLight: translations.ui.theme.toggle.toLight,
+          },
+          ariaToggle: translations.ui.theme.ariaToggle,
+        },
+      },
+
+      home: {
+        title: translations.home.title,
+        bookName: translations.home.bookName,
+        subtitle: translations.home.subtitle,
+        introductionCount: translations.home.introductionCount,
+        searchInContent: translations.home.searchInContent,
+        allChapters: translations.home.allChapters,
+        chapter: translations.home.chapter,
+        itemCount: translations.home.itemCount,
       },
 
       a11y: {

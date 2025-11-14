@@ -1,9 +1,10 @@
 // Home page - displays all 29 Khwater chapters
 import Link from 'next/link';
 import { getAllChapters } from '@/lib/data/khwater-service';
+import { translations } from '@/lib/translations';
 
 export const metadata = {
-  title: 'خواطر - جميع الفصول',
+  title: translations.home.title,
   description: 'Islamic spiritual texts - All chapters',
 };
 
@@ -19,13 +20,13 @@ export default async function HomePage() {
     <section className="text-center mb-16">
     <div className="mb-8">
     <h1 className="arabic-title text-5xl md:text-6xl font-bold mb-6">
-    كتاب خواطر
+    {translations.home.bookName}
     </h1>
     <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
-    خواطر عن الدين والحياة
+    {translations.home.subtitle}
     </p>
     <p className="text-gray-500 dark:text-gray-500">
-    {chapters.length} مقدمة 
+    {translations.home.introductionCount(chapters.length)}
     </p>
     </div>
 
@@ -47,14 +48,14 @@ export default async function HomePage() {
     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
     />
     </svg>
-    بحث في المحتوى
+    {translations.home.searchInContent}
     </Link>
     </div>
     </section>
 
     {/* Chapters Grid */}
     <section>
-    <h2 className="text-2xl font-bold mb-8 text-center">جميع الفصول</h2>
+    <h2 className="text-2xl font-bold mb-8 text-center">{translations.home.allChapters}</h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     {chapters.map((chapter, index) => (
       <Link
@@ -84,7 +85,7 @@ export default async function HomePage() {
       </div>
       <div className="mb-2">
         <h3 className="text-lg font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-          الفصل {chapter.id}
+          {translations.home.chapter(Number(chapter.id))}
         </h3>
         {chapter.chapterTitle && (
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -93,7 +94,7 @@ export default async function HomePage() {
         )}
       </div>
       <p className="text-sm text-gray-600 dark:text-gray-400">
-        {chapter.itemCount} عنصر
+        {translations.home.itemCount(chapter.itemCount)}
       </p>
       </Link>
     ))}

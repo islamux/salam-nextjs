@@ -13,8 +13,8 @@ This document outlines the Progressive Web App features implemented in Phase 5.
 The manifest file enables the app to be installed on mobile and desktop devices.
 
 **Features:**
-- App name: "علم - النصوص الروحية الإسلامية"
-- Short name: "علم" (Elm)
+- App name: "خواطر - حول الدين والحياة"
+- Short name: "خواطر" (khawater)
 - Standalone display mode (appears as native app)
 - RTL language support (Arabic)
 - Theme color: Blue (#2563eb)
@@ -34,8 +34,8 @@ Service worker enables offline reading and caching.
 
 **Cached Resources:**
 - Home page
-- All Elm chapters (`/elm/[id]`)
-- Elm data (`/elm-data.json`)
+- All khawater chapters (`/elm/[id]`)
+- khawater data (`/elm-data.json`)
 - Manifest file
 - Static assets (CSS, JS, images)
 
@@ -82,7 +82,7 @@ Users can install the app on:
 The service worker uses a **Cache First** strategy for:
 - Static assets (CSS, JS, images)
 - Chapter pages (`/elm/[id]`)
-- Elm data file
+- khawater data file
 
 For dynamic content, it uses **Network First** with cache fallback.
 
