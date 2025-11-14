@@ -1,10 +1,12 @@
 Tasks:
  # Senior to a junior
-
-- is the project respect SSR concept.
+ - Search for depricated things in project.
+ - Move search to server side.
+ - Make a plan to implemtnt Skelton in all project that need.
  - Make a plane to make sure im using interface in all my project with best practice.
 - add transliton section ar.json, en.json
 - theme based on system ok , but if i want to change it manualy dosnt work.
+- is the project respectSSR concept , make md file.
 - A MD FILE CHECK USING NEXTJS CONCEPT IN PROJECT WITH BEST PRACTICE md file caching. 
 - md file  api in nextjs 
 - md file about Skelton concept in project 
