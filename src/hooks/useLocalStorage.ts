@@ -37,9 +37,29 @@ export function useLocalStorage<T>(
 
     try {
       const item = window.localStorage.getItem(storageKey);
-      return item ? JSON.parse(item) : initialValue;
+
+      if (!item) {
+        return initialValue;
+      }
+
+      // Try to parse as JSON first
+      if (item.startsWith('{') || item.startsWith('[')) {
+        return JSON.parse(item);
+      }
+
+      // If not JSON, return as plain string (for backward compatibility)
+      return item as unknown as T;
     } catch (error) {
       console.error(`Error reading localStorage key "${storageKey}":`, error);
+      // If JSON parsing fails, try to return as plain string
+      try {
+        const item = window.localStorage.getItem(storageKey);
+        if (item) {
+          return item as unknown as T;
+        }
+      } catch (e) {
+        // Ignore
+      }
       return initialValue;
     }
   }, [initialValue]);
