@@ -54,31 +54,6 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content={translations.app.name} />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
-
-        {/* Initial theme script - prevents FOUC */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const THEME_KEY = 'elm-theme';
-                const savedTheme = localStorage.getItem(THEME_KEY);
-                let theme = savedTheme;
-
-                if (!theme) {
-                  // No saved theme, check system preference
-                  theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                }
-
-                // Apply theme to document BEFORE React loads
-                if (theme === 'dark') {
-                  document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
-                }
-              })();
-            `,
-          }}
-        />
       </head>
       <body
         className="antialiased font-arabic min-h-screen flex flex-col bg-white dark:bg-gray-950"

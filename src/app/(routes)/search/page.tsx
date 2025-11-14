@@ -7,6 +7,10 @@ import { searchChapters } from '@/lib/data/khwater-service';
 import { KhwaterItem } from '@/lib/types/khwater';
 import ContentRenderer from '@/components/khwater/ContentRenderer';
 import { useTranslation } from '@/hooks/useTranslation';
+import {
+  Skeleton,
+  SkeletonSearchResult,
+} from '@/components/shared/Skeletons';
 
 interface SearchResult {
   chapterId: string;
@@ -65,9 +69,11 @@ export default function SearchPage() {
       </div>
 
       {isLoading ? (
-        <div className="text-center py-12">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">{search.loading}</p>
+        <div className="space-y-8">
+          <Skeleton height={40} width="50%" rounded className="mx-auto" />
+          {Array.from({ length: 3 }).map((_, i) => (
+            <SkeletonSearchResult key={i} />
+          ))}
         </div>
       ) : hasSearched && results.length === 0 ? (
         <div className="text-center py-12">

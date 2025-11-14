@@ -36,7 +36,7 @@ export default function ThemeToggle() {
   if (!mounted) {
     return (
       <button
-        className="p-2 rounded-md bg-gray-100 dark:bg-gray-800 transition-colors"
+        className="p-2 rounded-md bg-gray-100 transition-colors"
         disabled
       >
         <div className="w-5 h-5" />
@@ -47,7 +47,13 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+      className={`
+        p-2 rounded-md transition-colors
+        ${theme === 'light'
+          ? 'bg-gray-100 hover:bg-gray-200'
+          : 'bg-gray-800 hover:bg-gray-700'
+        }
+      `}
       aria-label={ui.theme.ariaToggle(theme)}
       title={theme === 'light' ? ui.theme.toggle.toDark : ui.theme.toggle.toLight}
     >

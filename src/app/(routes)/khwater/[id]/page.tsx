@@ -5,14 +5,18 @@ import { getChapterData, getAllChapterIds } from '@/lib/data/khwater-service';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 import { translations } from '@/lib/translations';
+import {
+  SkeletonContentItem,
+  SkeletonButton,
+} from '@/components/shared/Skeletons';
 
 const ContentRenderer = dynamic(() => import('@/components/khwater/ContentRenderer'), {
-  loading: () => <div className="animate-pulse h-32 bg-gray-200 dark:bg-gray-700 rounded" />,
+  loading: () => <SkeletonContentItem />,
   ssr: true,
 });
 
 const ShareButton = dynamic(() => import('@/components/khwater/ShareButton'), {
-  loading: () => <div className="h-10 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />,
+  loading: () => <SkeletonButton width={96} height={40} />,
 });
 
 interface PageProps {

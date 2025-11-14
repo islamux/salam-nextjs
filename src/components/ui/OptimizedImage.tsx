@@ -4,6 +4,7 @@
 
 import { useState, useEffect } from 'react';
 import Image, { ImageProps } from 'next/image';
+import { Skeleton } from '@/components/shared/Skeletons';
 
 interface OptimizedImageProps extends Omit<ImageProps, 'src'> {
   src: string;
@@ -20,9 +21,11 @@ export default function OptimizedImage({
   ...props
 }: OptimizedImageProps) {
   const [imageSrc, setImageSrc] = useState(src);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setImageSrc(src);
+    setIsLoading(true);
   }, [src]);
 
   const handleError = () => {
@@ -31,16 +34,31 @@ export default function OptimizedImage({
     }
   };
 
+  const handleLoad = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <Image
-      src={imageSrc}
-      alt={alt}
-      width={width}
-      height={height}
-      className={className}
-      onError={handleError}
-      loading="lazy"
-      {...props}
-    />
+    <div className="relative">
+      {isLoading && (
+        <Skeleton
+          width={width}
+          height={height}
+          rounded
+          className="absolute inset-0 z-10"
+        />
+      )}
+      <Image
+        src={imageSrc}
+        alt={alt}
+        width={width}
+        height={height}
+        className={className}
+        onError={handleError}
+        onLoad={handleLoad}
+        loading="lazy"
+        {...props}
+      />
+    </div>
   );
 }
