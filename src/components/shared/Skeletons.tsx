@@ -11,7 +11,7 @@ export interface SkeletonProps {
   className?: string;
   width?: string | number;
   height?: string | number;
-  rounded?: boolean | string;
+  rounded?: boolean | 'full' | string;
 }
 
 // Base skeleton element with customizable dimensions
@@ -24,7 +24,7 @@ export function Skeleton({
   className?: string;
   width?: string | number;
   height?: string | number;
-  rounded?: boolean | string;
+  rounded?: boolean | 'full' | string;
 }) {
   const className = classNameProp;
   const width = widthProp;

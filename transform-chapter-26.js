@@ -1,0 +1,116 @@
+#!/usr/bin/env node
+
+/**
+ * Transform Chapter 26 from Dart source to JSON
+ * Maintains the EXACT order from Dart file
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+// Read Dart source file
+const dartFilePath = path.join(__dirname, 'texts-original/text/elm_text_ders_twenty_six.dart');
+const dartContent = fs.readFileSync(dartFilePath, 'utf8');
+
+// Extract content in the EXACT order they appear in the Dart file
+const items = [];
+const lines = dartContent.split('\n');
+
+let currentConstant = null;
+let currentValue = '';
+
+for (let i = 0; i < lines.length; i++) {
+  const line = lines[i];
+
+  // Check if this line starts a new constant
+  const subtitleMatch = line.match(/static const String (subtitle[A-Z][^=]+)= """/);
+  const textMatch = line.match(/static const String (elmText[A-Z][^=]+)= """/);
+  const ayahMatch = line.match(/static const String (ayahHadith[A-Z][^=]+)= """/);
+
+  if (subtitleMatch) {
+    // Save previous constant if exists
+    if (currentConstant) {
+      const item = createItemFromConstant(currentConstant, currentValue.trim());
+      if (item) items.push(item);
+    }
+    currentConstant = { type: 'subtitle', name: subtitleMatch[1].trim() };
+    currentValue = line.substring(line.indexOf('"""') + 3);
+  } else if (textMatch) {
+    // Save previous constant if exists
+    if (currentConstant) {
+      const item = createItemFromConstant(currentConstant, currentValue.trim());
+      if (item) items.push(item);
+    }
+    currentConstant = { type: 'text', name: textMatch[1].trim() };
+    currentValue = line.substring(line.indexOf('"""') + 3);
+  } else if (ayahMatch) {
+    // Save previous constant if exists
+    if (currentConstant) {
+      const item = createItemFromConstant(currentConstant, currentValue.trim());
+      if (item) items.push(item);
+    }
+    currentConstant = { type: 'ayah', name: ayahMatch[1].trim() };
+    currentValue = line.substring(line.indexOf('"""') + 3);
+  } else if (currentConstant && line.includes('"""')) {
+    // End of current constant
+    currentValue += '\n' + line.substring(0, line.indexOf('"""'));
+    const item = createItemFromConstant(currentConstant, currentValue.trim());
+    if (item) items.push(item);
+    currentConstant = null;
+    currentValue = '';
+  } else if (currentConstant) {
+    // Continuation of current constant
+    currentValue += '\n' + line;
+  }
+}
+
+// Helper function to create item from constant
+function createItemFromConstant(constant, value) {
+  if (constant.type === 'subtitle') {
+    return {
+      subtitle: value,
+      order: ['subtitle']
+    };
+  } else if (constant.type === 'text') {
+    return {
+      text: value,
+      order: ['text']
+    };
+  } else if (constant.type === 'ayah') {
+    return {
+      ayah: value,
+      order: ['ayah']
+    };
+  }
+  return null;
+}
+
+// Create JSON structure
+const jsonData = {
+  items: items,
+  metadata: {
+    id: '26',
+    version: '3.1.0',
+    generated: new Date().toISOString(),
+    totalItems: items.length
+  }
+};
+
+// Write to file
+const outputPath = path.join(__dirname, 'public/khwater/26.json');
+fs.writeFileSync(outputPath, JSON.stringify(jsonData, null, 2), 'utf8');
+
+console.log('✅ Chapter 26 transformation complete!');
+console.log(`   Total items: ${items.length}`);
+console.log(`   Output: ${outputPath}`);
+
+// Summary by type
+const subtitleCount = items.filter(item => item.subtitle).length;
+const textCount = items.filter(item => item.text).length;
+const ayahCount = items.filter(item => item.ayah).length;
+
+console.log('\n📊 Content breakdown:');
+console.log(`   Subtitles: ${subtitleCount}`);
+console.log(`   Texts: ${textCount}`);
+console.log(`   Ayahs: ${ayahCount}`);
+console.log(`   Total: ${items.length}`);
