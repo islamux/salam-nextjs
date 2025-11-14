@@ -13,19 +13,26 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const { value: theme, setValue: setTheme } = useLocalStorage<'light' | 'dark'>(THEME_KEY, 'light');
 
+  // Read initial theme from DOM (set by script in layout.tsx)
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains('dark');
+    const initialTheme = isDark ? 'dark' : 'light';
+    if (theme !== initialTheme) {
+      setTheme(initialTheme);
+    }
+    setMounted(true);
+  }, []); // Only run once on mount
+
   // Apply theme to DOM
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
     } else {
       document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = 'light';
     }
   }, [theme]);
-
-  // Prevent hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';

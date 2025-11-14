@@ -54,6 +54,28 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content={translations.app.name} />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+
+        {/* Theme initialization - prevents FOUC */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const THEME_KEY = 'elm-theme';
+                  const savedTheme = localStorage.getItem(THEME_KEY);
+                  const isDark = savedTheme === 'dark' ||
+                    (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                  document.documentElement.classList.toggle('dark', isDark);
+                  document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+                } catch (e) {
+                  // Fallback to light theme
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.style.colorScheme = 'light';
+                }
+              })();
+            `,
+          }}
+        />
       </head>
       <body
         className="antialiased font-arabic min-h-screen flex flex-col bg-white dark:bg-gray-950"
