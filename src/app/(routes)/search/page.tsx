@@ -1,81 +1,48 @@
 // Search page for finding chapters and content
-'use client';
-
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { searchChapters } from '@/lib/data/khwater-service';
 import { KhwaterItem } from '@/lib/types/khwater';
 import ContentRenderer from '@/components/khwater/ContentRenderer';
 import { useTranslation } from '@/hooks/useTranslation';
-import {
-  Skeleton,
-  SkeletonSearchResult,
-} from '@/components/shared/Skeletons';
 
-interface SearchResult {
-  chapterId: string;
-  items: KhwaterItem[];
+interface SearchPageProps {
+  searchParams?: {
+    q?: string;
+  };
 }
 
-export default function SearchPage() {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasSearched, setHasSearched] = useState(false);
+export default async function SearchPage({ searchParams }: SearchPageProps) {
+  const query = searchParams?.q || '';
+  const results = query ? await searchChapters(query) : [];
   const { search, chapter } = useTranslation();
-
-  useEffect(() => {
-    const timer = setTimeout(async () => {
-      if (!query.trim()) {
-        setResults([]);
-        setHasSearched(false);
-        return;
-      }
-      setIsLoading(true);
-      setHasSearched(true);
-      try {
-        setResults(await searchChapters(query));
-      } catch {
-        setResults([]);
-      } finally {
-        setIsLoading(false);
-      }
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [query]);
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       <h1 className="arabic-title text-3xl font-bold mb-8 text-center">{search.title}</h1>
 
       <div className="mb-8">
-        <div className="relative max-w-2xl mx-auto">
+        <form method="GET" action="/search" className="relative max-w-2xl mx-auto">
           <label htmlFor="search-input" className="sr-only">{search.label}</label>
           <input
             id="search-input"
             type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            name="q"
+            defaultValue={query}
             placeholder={search.placeholder}
             aria-label={search.ariaLabel}
             aria-describedby="search-help"
             className="w-full px-4 py-3 pr-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
           <div id="search-help" className="sr-only">{search.help}</div>
-          <svg className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </div>
+          <button type="submit" className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </form>
       </div>
 
-      {isLoading ? (
-        <div className="space-y-8">
-          <Skeleton height={40} width="50%" rounded className="mx-auto" />
-          {Array.from({ length: 3 }).map((_, i) => (
-            <SkeletonSearchResult key={i} />
-          ))}
-        </div>
-      ) : hasSearched && results.length === 0 ? (
+      {query && results.length === 0 ? (
         <div className="text-center py-12">
           <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

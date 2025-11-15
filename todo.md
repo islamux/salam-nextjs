@@ -12,7 +12,7 @@ Tasks:
 - A MD FILE CHECK USING NEXTJS CONCEPT IN PROJECT WITH BEST PRACTICE md file caching. 
 - md file  api in nextjs 
 - md file about Skelton concept in project 
-- md file Shade cn VS Tailwend
+- md file Shade cn VS Tailwend make ui is more beautiful, attractive.
 - update .claud, IMPROVEMENT_PLAN, COD...
 - make plan to make the ui is beautiful specialy for quran ayat.
 - md file analyze performance 

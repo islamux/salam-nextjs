@@ -1,6 +1,5 @@
 // Data service layer for Khwater data
 import { KhwaterItem } from '@/lib/types/khwater';
-import { buildSearchIndex, searchIndex } from '@/lib/utils/search-index';
 
 // Type for chapter metadata
 interface ChapterMetadata {
@@ -34,13 +33,8 @@ interface KhwaterIndex {
   };
 }
 
-// Legacy type for backward compatibility during migration
-interface KhwaterData {
-  version: string;
-  generated: string;
-  totalLists: number;
-  lists: Record<string, KhwaterItem[]>;
-}
+// In-memory cache for all Khwater data
+let cachedKhwaterData: Record<string, KhwaterItem[]> | null = null;
 
 /**
  * Load chapter metadata from index
@@ -74,29 +68,27 @@ export const loadChapterData = async (id: string): Promise<KhwaterItem[]> => {
 };
 
 /**
- * Load all Khwater data (legacy function for backward compatibility)
- * @deprecated Use loadChapterData() for specific chapters instead
+ * Load all Khwater data into cache
  */
-export const loadKhwaterData = async (): Promise<KhwaterData> => {
+const loadAllKhwaterData = async (): Promise<Record<string, KhwaterItem[]>> => {
+  if (cachedKhwaterData) {
+    return cachedKhwaterData;
+  }
+
   const index = await loadIndex();
-  const lists: Record<string, KhwaterItem[]> = {};
+  const allChapterData: Record<string, KhwaterItem[]> = {};
 
   // Load all chapters sequentially
   for (const chapter of index.chapters) {
     try {
-      lists[chapter.id] = await loadChapterData(chapter.id);
+      allChapterData[chapter.id] = await loadChapterData(chapter.id);
     } catch (error) {
       console.error(`Failed to load chapter ${chapter.id}:`, error);
-      lists[chapter.id] = [];
+      allChapterData[chapter.id] = [];
     }
   }
-
-  return {
-    version: index.version,
-    generated: index.generated,
-    totalLists: index.totalChapters,
-    lists
-  };
+  cachedKhwaterData = allChapterData;
+  return cachedKhwaterData;
 };
 
 /**
@@ -154,31 +146,30 @@ export const getAllChapters = async () => {
 };
 
 /**
- * Search across all chapters
+ * Search across all chapters using in-memory cache and simple string matching
  */
 export const searchChapters = async (query: string) => {
-  const index = await loadIndex();
-  const chapterMap = new Map<string, KhwaterItem[]>();
+  const allKhwater = await loadAllKhwaterData();
+  const lowerCaseQuery = query.toLowerCase();
+  const resultsMap = new Map<string, KhwaterItem[]>();
 
-  // Search in all chapters
-  for (const chapter of index.chapters) {
-    try {
-      const items = await loadChapterData(chapter.id);
-      const searchResults = searchIndex(buildSearchIndex({ [chapter.id]: items }), query);
+  for (const chapterId in allKhwater) {
+    const items = allKhwater[chapterId];
+    const matchingItems: KhwaterItem[] = [];
 
-      searchResults.forEach((result) => {
-        const chapterItems = chapterMap.get(result.chapterId) || [];
-        if (items[result.itemIndex]) {
-          chapterItems.push(items[result.itemIndex]);
-        }
-        chapterMap.set(result.chapterId, chapterItems);
-      });
-    } catch (error) {
-      console.error(`Error searching chapter ${chapter.id}:`, error);
+    for (const item of items) {
+      const textContent = `${item.title || ''} ${item.subtitle || ''} ${item.text || ''} ${item.ayah || ''}`.toLowerCase();
+      if (textContent.includes(lowerCaseQuery)) {
+        matchingItems.push(item);
+      }
+    }
+
+    if (matchingItems.length > 0) {
+      resultsMap.set(chapterId, matchingItems);
     }
   }
 
-  return Array.from(chapterMap.entries())
+  return Array.from(resultsMap.entries())
     .map(([chapterId, items]) => ({ chapterId, items }))
     .sort((a, b) => Number(a.chapterId) - Number(b.chapterId));
 };
