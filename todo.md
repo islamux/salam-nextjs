@@ -2,10 +2,10 @@ Tasks:
  # Senior to a junior
 - in search how to enable highlight on word searching.
 - is the project respect SSR concept.
- - Search for depricated things in project.
- - Move search to server side.
- - Make a plan to implemtnt Skelton in all project that need.
- - Make a plane to make sure im using interface in all my project with best practice.
+- Search for depricated things in project.
+- Move search to server side.
+- Make a plan to implemtnt Skelton in all project that need.
+- Make a plane to make sure im using interface in all my project with best practice.
 - add transliton section ar.json, en.json
 - theme based on system ok , but if i want to change it manualy dosnt work.
 - is the project respectSSR concept , make md file.
