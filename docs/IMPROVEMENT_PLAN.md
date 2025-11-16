@@ -2,7 +2,7 @@
 
 **Project:** خواطر - Islamic Spiritual Texts App
 **Current Version:** v0.1.0
-**Date:** November 10, 2025
+**Date:** November 16, 2025
 **Total Duration:** 10-15 weeks
 
 ---
@@ -46,7 +46,7 @@ This improvement plan outlines a comprehensive strategy to enhance the Islamic S
 - No content translation (i18n)
 - No user preferences persistence
 - No social sharing enhancements
-- Limited offline fallbacks (recently disabled)
+- Limited offline fallbacks
 
 ---
 
@@ -91,6 +91,13 @@ This improvement plan outlines a comprehensive strategy to enhance the Islamic S
 - ✅ TESTING_TUTORIAL.md created
 - ✅ CLEANUP_PLAN.md documented
 - ✅ Documentation updated in README.md and CLAUDE.md
+
+##### Code References (as of 2025-11-16)
+- src/lib/data/khwater-service.ts: loadIndex, getAllChapters, getAllChapterIds, getChapterData, searchChapters, generateStaticParams
+- src/app/(routes)/search/page.tsx: Server-side search UI using searchChapters
+- src/app/(routes)/khwater/[id]/page.tsx: Dynamic chapter page using getChapterData
+- src/components/shared/ServiceWorkerRegistration.tsx: beforeinstallprompt handler and SW registration
+- public/khwater/index.json and public/khwater/*.json: chapter data source
 
 ---
 
@@ -462,6 +469,7 @@ This improvement plan outlines a comprehensive strategy to enhance the Islamic S
 | 2025-11-10 | 1.0 | Initial improvement plan created |
 | 2025-11-13 | 1.1 | Added Phase 0 - Recent completed updates (PWA popup removal, Testing Tutorial, Cleanup Plan) |
 | 2025-11-15 | 1.2 | Added Phase 0 - Server-side search implementation |
+| 2025-11-16 | 1.3 | Synced with repository: code references added; date updated |
 
 ---
 
