@@ -57,7 +57,7 @@ export function useLocalStorage<T>(
         if (item) {
           return item as unknown as T;
         }
-      } catch (e) {
+      } catch {
         // Ignore
       }
       return initialValue;

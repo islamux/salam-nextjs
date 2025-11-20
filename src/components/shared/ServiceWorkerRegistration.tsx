@@ -5,14 +5,9 @@ import { useEffect } from "react";
 export default function ServiceWorkerRegistration() {
   useEffect(() => {
     if (typeof window !== "undefined" && "serviceWorker" in navigator) {
-      // Prevent the browser's install prompt popup
-      let deferredPrompt: any = null;
-
       window.addEventListener("beforeinstallprompt", (e) => {
         // Prevent the browser's install prompt from showing
         e.preventDefault();
-        // Store the event so it can be triggered later if needed
-        deferredPrompt = e;
         console.log("Install prompt prevented (PWA features still active)");
       });
 

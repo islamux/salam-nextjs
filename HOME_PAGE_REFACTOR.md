@@ -170,7 +170,7 @@ import { ChapterGrid } from '@/components/home/ChapterGrid';
 
 export const metadata = {
   title: translations.home.title,
-  description: 'Islamic spiritual texts - All chapters',
+  description: 'Islamic Khwaters - All chapters',
 };
 
 // Enable ISR - revalidate every hour (3600 seconds)

@@ -2,7 +2,6 @@ Tasks:
  # Senior to a junior
 - in search how to enable highlight on word searching.
 - is the project respect SSR concept.
-- Search for depricated things in project.
 - Move search to server side.
 - Make a plan to implemtnt Skelton in all project that need.
 - Make a plane to make sure im using interface in all my project with best practice.

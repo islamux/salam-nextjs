@@ -60,7 +60,12 @@ export const searchIndex = (
   score: number;
 }> => {
   const searchTerms = query.toLowerCase().trim().split(/\s+/);
-  const results: Map<string, any> = new Map();
+  const results = new Map<string, {
+    chapterId: string;
+    itemIndex: number;
+    matches: string[];
+    score: number;
+  }>();
 
   index.forEach((item) => {
     let totalScore = 0;
@@ -89,7 +94,7 @@ export const searchIndex = (
     if (totalScore > 0) {
       const key = `${item.chapterId}-${item.itemIndex}`;
       if (results.has(key)) {
-        const existing = results.get(key);
+        const existing = results.get(key)!;
         existing.score += totalScore;
         existing.matches.push(...matchedTerms);
       } else {

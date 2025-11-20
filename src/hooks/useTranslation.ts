@@ -2,27 +2,25 @@
 // Zero dependencies, type-safe, tree-shakeable
 
 import { useMemo } from 'react';
-import { translations, TranslationKey, getTranslation } from '@/lib/translations';
-
-type TranslationValue = string | ((...args: any[]) => string);
+import { translations, getTranslation } from '@/lib/translations';
 
 export function useTranslation() {
   const t = useMemo(() => {
     return {
       // Get translation by key path (e.g., 'chapter.previous' or 'nav.home')
       get: (key: string): string => {
-        const value = getTranslation(translations, key) as any;
+        const value = getTranslation(translations, key) as unknown;
         if (typeof value === 'function') {
           throw new Error(`Translation "${key}" is a function, use t.getFunc instead`);
         }
-        return value || key;
+        return (value as string) || key;
       },
 
       // Get function-based translation (for dynamic strings)
-      getFunc: (key: string, ...args: any[]): string => {
-        const value = getTranslation(translations, key) as any;
+      getFunc: (key: string, ...args: unknown[]): string => {
+        const value = getTranslation(translations, key) as unknown;
         if (typeof value === 'function') {
-          return value(...args);
+          return (value as (...args: unknown[]) => string)(...args);
         }
         if (typeof value === 'string') {
           return value;

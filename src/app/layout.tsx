@@ -40,13 +40,31 @@ export const viewport = {
   maximumScale: 1,
 };
 
+/*
+*SHORTHAND OF Error: Intentional mismatch - The dark mode script must run before
+  React hydrates
+
+* **Hydration Error** occurs when the HTML rendered on the server (SSR) doesn't match what React expects on the client side during the hydration process. This is a common issue in Next.js applications that use Server-Side Rendering (SSR) or Static Site Generation (SSG).
+  *
+  * Fixing Error: 
+  * A tree hydrated but some attributes of the server rendered HTML didn't match
+<html lang="ar" dir="rtl" className="dark">  <-- Mismatch here
+```
+
+**Root Cause:**
+Your `layout.tsx` has an inline script that runs before React hydrates and adds the `dark` class to the HTML element. React's initial render doesn't expect this class, causing a mismatch.
+
+**✅ Solution - Add `suppressHydrationWarning`:**
+
+  * */
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" suppressHydrationWarning={true}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#2563eb" />

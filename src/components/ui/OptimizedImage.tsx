@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image, { ImageProps } from 'next/image';
 import { Skeleton } from '@/components/shared/Skeletons';
 
@@ -22,11 +22,13 @@ export default function OptimizedImage({
 }: OptimizedImageProps) {
   const [imageSrc, setImageSrc] = useState(src);
   const [isLoading, setIsLoading] = useState(true);
+  const [prevSrc, setPrevSrc] = useState(src);
 
-  useEffect(() => {
+  if (src !== prevSrc) {
+    setPrevSrc(src);
     setImageSrc(src);
     setIsLoading(true);
-  }, [src]);
+  }
 
   const handleError = () => {
     if (fallbackSrc && imageSrc !== fallbackSrc) {

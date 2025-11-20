@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function InstallButton() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [isInstallable, setIsInstallable] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
@@ -12,7 +13,9 @@ export default function InstallButton() {
   useEffect(() => {
     // Check if app is already installed
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const isInWebAppiOS = (window.navigator as any).standalone === true;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsInstalled(isStandalone || isInWebAppiOS);
 
     // Listen for the beforeinstallprompt event

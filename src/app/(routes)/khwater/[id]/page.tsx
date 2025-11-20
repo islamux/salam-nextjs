@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getChapterData, getAllChapterIds } from '@/lib/data/khwater-service';
 import dynamic from 'next/dynamic';
-import { Metadata } from 'next';
 import { translations } from '@/lib/translations';
 import {
   SkeletonContentItem,
@@ -28,14 +27,11 @@ export async function generateStaticParams() {
   return chapters.map((id) => ({ id }));
 }
 
+// revalidate every hour
 export const revalidate = 3600;
 
 export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
-  const chapter = await getChapterData(id);
-  const description =
-    chapter.slice(0, 3).map((item) => item.text).filter(Boolean).join(' • ') ||
-    translations.chapter.contentOfBook(id);
 
   return {
     title: translations.chapter.contentTitle(id),
@@ -94,7 +90,7 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
             numberOfPages: 29,
             url: `https://elm-app.vercel.app/khwater/${id}`,
             mainEntityOfPage: `https://elm-app.vercel.app/khwater/${id}`,
-            keywords: 'كتاب خواطر, نصوص إسلامية',
+            keywords: 'كتاب خواطر  ',
           }),
         }}
       />

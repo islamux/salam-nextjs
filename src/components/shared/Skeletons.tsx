@@ -101,10 +101,10 @@ export function SkeletonTitle({
 // CARD SKELETON COMPONENTS
 // =============================================================================
 
-export interface SkeletonCardProps {}
+export type SkeletonCardProps = object;
 
 // Card skeleton for chapter cards
-export function SkeletonCard(_props: SkeletonCardProps = {}) {
+export function SkeletonCard() {
   return (
     <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700">
       <div className="flex items-center justify-between mb-4">
@@ -119,10 +119,10 @@ export function SkeletonCard(_props: SkeletonCardProps = {}) {
   );
 }
 
-export interface SkeletonSearchResultProps {}
+export type SkeletonSearchResultProps = object;
 
 // Search result skeleton
-export function SkeletonSearchResult(_props: SkeletonSearchResultProps = {}) {
+export function SkeletonSearchResult() {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
       <div className="flex justify-between items-center mb-4">
@@ -145,10 +145,10 @@ export function SkeletonSearchResult(_props: SkeletonSearchResultProps = {}) {
 // CONTENT SKELETON COMPONENTS
 // =============================================================================
 
-export interface SkeletonContentItemProps {}
+export type SkeletonContentItemProps = object;
 
 // Content item skeleton (for chapter content)
-export function SkeletonContentItem(_props: SkeletonContentItemProps = {}) {
+export function SkeletonContentItem() {
   return (
     <div className="space-y-4">
       <Skeleton height={32} width="75%" rounded />
@@ -189,10 +189,10 @@ export function SkeletonProgress({
 // NAVIGATION SKELETON COMPONENTS
 // =============================================================================
 
-export interface SkeletonNavigationProps {}
+export type SkeletonNavigationProps = object;
 
 // Navigation skeleton
-export function SkeletonNavigation(_props: SkeletonNavigationProps = {}) {
+export function SkeletonNavigation() {
   return (
     <div className="flex justify-between items-center mt-12">
       <Skeleton width={192} height={48} rounded />
@@ -245,10 +245,10 @@ export function SkeletonGrid({
 // SEARCH SKELETON COMPONENTS
 // =============================================================================
 
-export interface SkeletonSearchInputProps {}
+export type SkeletonSearchInputProps = object;
 
 // Search input skeleton
-export function SkeletonSearchInput(_props: SkeletonSearchInputProps = {}) {
+export function SkeletonSearchInput() {
   return (
     <div className="h-12 bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse" />
   );

@@ -65,7 +65,7 @@ self.addEventListener("install", (event) => {
               await cache.put(url, response.clone());
               console.log(`  ✅ Also cached ${url}`);
             }
-          } catch (error) {
+          } catch {
             // Ignore errors for trailing slash
           }
         }
@@ -158,7 +158,7 @@ self.addEventListener("fetch", (event) => {
           }
 
           throw new Error("Network response not ok");
-        } catch (error) {
+        } catch {
           console.log("⚠️  SW: Network failed for", url.pathname, "- trying cache");
 
           // Network failed, try cache
@@ -253,7 +253,7 @@ self.addEventListener("fetch", (event) => {
           await cache.put(request, networkResponse.clone());
         }
         return networkResponse;
-      } catch (error) {
+      } catch {
         console.error("❌ SW: Failed asset fetch:", url.pathname);
         return new Response("Offline", { status: 503 });
       }

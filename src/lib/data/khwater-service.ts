@@ -105,7 +105,7 @@ export const getAllChapterIds = async (): Promise<string[]> => {
 export const getChapterData = async (id: string): Promise<KhwaterItem[]> => {
   try {
     return await loadChapterData(id);
-  } catch (error) {
+  } catch {
     throw new Error(`Chapter ${id} not found`);
   }
 };
@@ -148,30 +148,40 @@ export const getAllChapters = async () => {
 /**
  * Search across all chapters using in-memory cache and simple string matching
  */
+import { buildSearchIndex, searchIndex } from '@/lib/utils/search-index';
+
+// Cache for search index
+let cachedSearchIndex: ReturnType<typeof buildSearchIndex> | null = null;
+
+/**
+ * Search across all chapters using enhanced search index
+ */
 export const searchChapters = async (query: string) => {
   const allKhwater = await loadAllKhwaterData();
-  const lowerCaseQuery = query.toLowerCase();
-  const resultsMap = new Map<string, KhwaterItem[]>();
-
-  for (const chapterId in allKhwater) {
-    const items = allKhwater[chapterId];
-    const matchingItems: KhwaterItem[] = [];
-
-    for (const item of items) {
-      const textContent = `${item.title || ''} ${item.subtitle || ''} ${item.text || ''} ${item.ayah || ''}`.toLowerCase();
-      if (textContent.includes(lowerCaseQuery)) {
-        matchingItems.push(item);
-      }
-    }
-
-    if (matchingItems.length > 0) {
-      resultsMap.set(chapterId, matchingItems);
-    }
+  
+  // Build index if not exists
+  if (!cachedSearchIndex) {
+    cachedSearchIndex = buildSearchIndex(allKhwater);
   }
 
+  // Perform search
+  const searchResults = searchIndex(cachedSearchIndex, query);
+
+  // Group results by chapter
+  const resultsMap = new Map<string, KhwaterItem[]>();
+  
+  searchResults.forEach(result => {
+    const chapterItems = allKhwater[result.chapterId];
+    if (chapterItems && chapterItems[result.itemIndex]) {
+      if (!resultsMap.has(result.chapterId)) {
+        resultsMap.set(result.chapterId, []);
+      }
+      resultsMap.get(result.chapterId)?.push(chapterItems[result.itemIndex]);
+    }
+  });
+
   return Array.from(resultsMap.entries())
-    .map(([chapterId, items]) => ({ chapterId, items }))
-    .sort((a, b) => Number(a.chapterId) - Number(b.chapterId));
+    .map(([chapterId, items]) => ({ chapterId, items }));
 };
 
 /**
@@ -183,3 +193,10 @@ export const generateStaticParams = async () => {
     id: chapter.id
   }));
 };
+
+
+
+
+
+
+

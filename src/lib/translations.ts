@@ -121,7 +121,9 @@ export type TranslationKey = keyof typeof translations;
 
 // Helper function to get nested translation
 export function getTranslation<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   T extends Record<string, any>
 >(obj: T, path: string): T[keyof T] {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return path.split('.').reduce((acc, key) => acc?.[key], obj) as any;
 }

@@ -32,10 +32,23 @@ export interface KhwaterChapter {
   items: KhwaterItem[];
 }
 
+export interface ChapterMetadata {
+  id: string;
+  title: string;        // The "الفصل X" title
+  chapterTitle: string; // The actual title from the first item
+  description: string;
+  itemCount: number;
+}
+
 export interface FontSizeSettings {
   base: number;
   title: number;
   subtitle: number;
   text: number;
   ayah: number;
+}
+
+export interface SearchResult {
+  chapterId: string;
+  items: KhwaterItem[];
 }
