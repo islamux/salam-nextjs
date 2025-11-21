@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import useLocalStorage from '@/hooks/useLocalStorage';
 
@@ -11,27 +11,35 @@ const THEME_KEY = 'elm-theme';
 export default function ThemeToggle() {
   const { ui } = useTranslation();
   const [mounted, setMounted] = useState(false);
-  const { value: theme, setValue: setTheme } = useLocalStorage<'light' | 'dark'>(THEME_KEY, 'light');
+  const hasInitialized = useRef(false);
+  const { value: theme, setValue: setTheme, isLoading } = useLocalStorage<'light' | 'dark'>(THEME_KEY, 'light');
 
   // Read initial theme from DOM (set by script in layout.tsx)
   useEffect(() => {
+    if (isLoading || hasInitialized.current) return;
+
     const isDark = document.documentElement.classList.contains('dark');
     const initialTheme = isDark ? 'dark' : 'light';
+    
+    // Only sync with DOM on first mount, not after user toggles
     if (theme !== initialTheme) {
       setTheme(initialTheme);
     }
+    hasInitialized.current = true;
     setMounted(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only run once on mount
+  }, [isLoading]); // Run when storage is loaded
 
   // Apply theme to DOM
   useEffect(() => {
+    if (!mounted) return;
+    
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, [theme]);
+  }, [theme, mounted]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
