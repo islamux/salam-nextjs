@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { getAllChapterIds } from '@/lib/data/khwater-service';
 
+export const dynamic = 'force-static';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://elm-app.vercel.app';
   const chapterIds = await getAllChapterIds();
