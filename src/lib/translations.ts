@@ -56,6 +56,9 @@ export const translations = {
     tagline: 'عن الدين والحياة',
     rightsReserved: 'جميع الحقوق محفوظة لكل مسلم',
     builtWith: 'تم التطوير باستخدام Next.js و TypeScript',
+    developedBy: 'المشروع مفتوح المصدر تحت رخصة جنو'
+
+
   },
 
   // Search

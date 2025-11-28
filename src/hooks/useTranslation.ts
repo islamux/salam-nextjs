@@ -77,6 +77,7 @@ export function useTranslation() {
         tagline: translations.footer.tagline,
         rightsReserved: translations.footer.rightsReserved,
         builtWith: translations.footer.builtWith,
+        developedBy: translations.footer.developedBy,
       },
 
       search: {
