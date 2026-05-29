@@ -3,7 +3,7 @@
 [![Next.js](https://img.shields.io/badge/Next.js-14%2B-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![License: MIT License](https://img.shields.io/badge/License-GNU%20MIT License-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![GitHub](https://img.shields.io/badge/GitHub-Islamux-black?logo=github)](https://github.com/islamux)
 [![PWA Ready](https://img.shields.io/badge/PWA-Ready-green?logo=pwa)](#)
 
@@ -157,10 +157,10 @@ src/
 ## 📄 الرخصة
 
 هذا المشروع مرخّص تحت رخصة  
-**MIT License (MIT License)**  
+**GNU General Public License v3.0**  
 يمكنك استخدامه أو تعديله بحرية مع الالتزام بشروط الرخصة.  
 
-[![License: MIT License](https://img.shields.io/badge/License-MIT License-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ---
 
@@ -169,7 +169,7 @@ src/
 [![Next.js](https://img.shields.io/badge/Next.js-14%2B-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![License: MIT License](https://img.shields.io/badge/License-MIT License-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![GitHub](https://img.shields.io/badge/GitHub-Islamux-black?logo=github)](https://github.com/islamux)
 [![PWA Ready](https://img.shields.io/badge/PWA-Ready-green?logo=pwa)](#)
 
@@ -229,6 +229,6 @@ We welcome all contributions and feedback!
 
 ## 📄 License
 
-Released under the **MIT License (MIT License)**  
+Released under the **GNU General Public License v3.0**  
 
-[![License: MIT License](https://img.shields.io/badge/License-MIT License-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
