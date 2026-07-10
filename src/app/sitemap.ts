@@ -1,13 +1,13 @@
 import { MetadataRoute } from 'next';
 import { getAllChapterIds } from '@/lib/data/khwater-service';
+import { SITE_URL } from '@/lib/translations';
 
 export const dynamic = 'force-static';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://elm-app.vercel.app';
+  const baseUrl = SITE_URL;
   const chapterIds = await getAllChapterIds();
 
-  // Static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
@@ -29,7 +29,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Chapter pages
   const chapterPages: MetadataRoute.Sitemap = chapterIds.map((id) => ({
     url: `${baseUrl}/khwater/${id}`,
     lastModified: new Date(),

@@ -7,39 +7,52 @@ interface HeroSectionProps {
 export function HeroSection({ chaptersCount }: HeroSectionProps) {
 
   return (
-    <section className="text-center mb-16">
-      <div className="mb-8">
-        <h1 className="arabic-title text-5xl md:text-6xl font-bold mb-6">
-          {translations.home.bookName}
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
+    <section className="relative text-center mb-20 pt-12 pb-16 overflow-hidden">
+      {/* Decorative number */}
+      <span className="absolute top-0 left-1/2 -translate-x-1/2 text-[16rem] font-amiri font-bold text-amber-600/[0.03] dark:text-amber-400/[0.02] select-none leading-none pointer-events-none" aria-hidden="true">
+        {chaptersCount}
+      </span>
+
+      <div className="relative">
+        <div className="mb-6">
+          <span className="inline-block text-5xl sm:text-7xl font-amiri font-bold text-gray-900 dark:text-gray-50 leading-tight tracking-wide">
+            {translations.home.bookName}
+          </span>
+        </div>
+
+        <p className="text-lg sm:text-xl text-gray-500 dark:text-gray-400 mb-8 max-w-xl mx-auto leading-relaxed">
           {translations.home.subtitle}
         </p>
-        <p className="text-gray-500 dark:text-gray-500">
-          {translations.home.introductionCount(chaptersCount)}
-        </p>
-      </div>
 
-      <div className="flex justify-center space-x-4 rtl: space-x-reverse">
-        <Link
-          href={"/search"}
-          className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          <svg
-            className="w-5 h-5 ml-2 rtl:ml-0 rtl:mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800 mb-10">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500" aria-hidden="true" />
+          <span className="text-sm text-amber-700 dark:text-amber-300">
+            {translations.home.introductionCount(chaptersCount)}
+          </span>
+        </div>
+
+        <div className="flex justify-center">
+          <Link
+            href="/search"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-amber-600 text-white rounded-2xl hover:bg-amber-700 transition-all duration-200 shadow-lg shadow-amber-600/10 hover:shadow-amber-600/20 hover:-translate-y-0.5"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 211-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-          {translations.home.searchInContent}
-        </Link>
+            <svg
+              className="w-5 h-5 transition-transform group-hover:scale-110"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <span className="font-medium">{translations.home.searchInContent}</span>
+          </Link>
+        </div>
       </div>
     </section>
   );

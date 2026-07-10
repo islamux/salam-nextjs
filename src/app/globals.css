@@ -1,10 +1,11 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --font-amiri: 'Amiri', 'Scheherazade New', 'Times New Roman', serif;
   --font-noto-arabic: 'Noto Sans Arabic', 'Arial Unicode MS', Arial, sans-serif;
+  --pattern-overlay: rgba(23, 23, 23, 0.06);
 }
 
 @theme inline {
@@ -20,6 +21,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --pattern-overlay: rgba(255, 255, 255, 0.06);
   }
 }
 
@@ -30,7 +32,10 @@ body {
   direction: rtl;
 }
 
-/* Arabic font classes */
+html {
+  transition: font-size 150ms ease-out;
+}
+
 .font-arabic {
   font-family: var(--font-amiri), serif;
   direction: rtl;
@@ -43,21 +48,20 @@ body {
   text-align: right;
 }
 
-/* RTL support */
-[dir="rtl"] {
+[dir='rtl'] {
   text-align: right;
 }
 
-
-[dir="rtl"] .text-left {
+[dir='rtl'] .text-left {
   text-align: right;
 }
 
-/* Arabic text styling */
 .arabic-text {
   font-family: var(--font-amiri), serif;
-  line-height: 2;
+  font-size: 1.125rem;
+  line-height: 2.2;
   letter-spacing: 0.5px;
+  max-width: 65ch;
 }
 
 .arabic-title {
@@ -69,7 +73,53 @@ body {
 
 .arabic-ayah {
   font-family: var(--font-amiri), serif;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   opacity: 0.9;
-  line-height: 2;
+  line-height: 2.2;
+}
+
+/* Book page background */
+.bg-book-page {
+  background-color: oklch(0.98 0.005 82);
+  background-image:
+    linear-gradient(to bottom, oklch(0.99 0.003 82) 0%, transparent 10%),
+    linear-gradient(to top, oklch(0.97 0.005 82) 0%, transparent 30%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .bg-book-page {
+    background-color: oklch(0.16 0.005 82);
+    background-image:
+      linear-gradient(to bottom, oklch(0.17 0.004 82) 0%, transparent 10%),
+      linear-gradient(to top, oklch(0.15 0.005 82) 0%, transparent 30%);
+  }
+}
+
+/* Prose reader for content articles */
+.prose-reader {
+  max-width: 58ch;
+  margin: 0 auto;
+}
+
+.bg-islamic-pattern {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(circle at center, var(--pattern-overlay) 0%, transparent 80%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
 }

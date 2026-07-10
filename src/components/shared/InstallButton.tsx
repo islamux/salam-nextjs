@@ -77,7 +77,7 @@ export default function InstallButton() {
   return (
     <button
       onClick={handleInstallClick}
-      className="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 dark:text-blue-300 dark:bg-blue-900/50 dark:hover:bg-blue-900/70 transition-colors"
+      className="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md text-amber-700 bg-amber-100 hover:bg-amber-200 dark:text-amber-300 dark:bg-amber-900/30 dark:hover:bg-amber-900/50 transition-colors"
       aria-label={app.installApp}
       title={app.installApp}
     >

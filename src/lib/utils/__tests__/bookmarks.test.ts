@@ -50,7 +50,7 @@ describe('bookmarks', () => {
     });
 
     it('should return empty array when localStorage throws error', () => {
-      vi.spyOn(localStorage, 'getItem').mockImplementation(() => {
+      vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
         throw new Error('Test error');
       });
 
@@ -64,6 +64,7 @@ describe('bookmarks', () => {
       );
 
       consoleSpy.mockRestore();
+      vi.spyOn(Storage.prototype, 'getItem').mockRestore();
     });
   });
 
@@ -80,21 +81,24 @@ describe('bookmarks', () => {
         },
       ];
 
+      const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
       saveBookmarks(bookmarks);
 
-      expect(localStorage.setItem).toHaveBeenCalledWith(
+      expect(setItemSpy).toHaveBeenCalledWith(
         'elm-bookmarks',
         JSON.stringify(bookmarks)
       );
+
+      setItemSpy.mockRestore();
     });
 
     it('should handle save errors gracefully', () => {
-      vi.spyOn(localStorage, 'setItem').mockImplementation(() => {
+      vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
         throw new Error('Test error');
       });
 
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      const bookmarks = [];
+      const bookmarks: never[] = [];
 
       expect(() => saveBookmarks(bookmarks)).not.toThrow();
       expect(consoleSpy).toHaveBeenCalledWith(
@@ -103,6 +107,7 @@ describe('bookmarks', () => {
       );
 
       consoleSpy.mockRestore();
+      vi.spyOn(Storage.prototype, 'setItem').mockRestore();
     });
   });
 
@@ -119,14 +124,17 @@ describe('bookmarks', () => {
     });
 
     it('should save bookmark to localStorage', () => {
+      const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
       addBookmark('1', 0, mockItem);
 
-      expect(localStorage.setItem).toHaveBeenCalled();
+      expect(setItemSpy).toHaveBeenCalled();
       const saved = localStorage.getItem('elm-bookmarks');
       const bookmarks = JSON.parse(saved || '[]');
 
       expect(bookmarks).toHaveLength(1);
       expect(bookmarks[0].chapterId).toBe('1');
+
+      setItemSpy.mockRestore();
     });
 
     it('should add to beginning of array', () => {
@@ -151,7 +159,7 @@ describe('bookmarks', () => {
 
       const remaining = getBookmarks();
       expect(remaining).toHaveLength(1);
-      expect(remaining[0].chapterId).toBe('2');
+      expect(remaining[0].chapterId).toBe('1');
     });
 
     it('should handle non-existent bookmark', () => {

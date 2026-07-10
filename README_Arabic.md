@@ -164,27 +164,6 @@ src/
 
 ---
 
-# 🌍 English Version
-
-[![Next.js](https://img.shields.io/badge/Next.js-14%2B-black?logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![GitHub](https://img.shields.io/badge/GitHub-Islamux-black?logo=github)](https://github.com/islamux)
-[![PWA Ready](https://img.shields.io/badge/PWA-Ready-green?logo=pwa)](#)
-
-> **Khwater – Reflections on Faith & Life**  
-> Spiritual and intellectual reflections inspired by Islamic values,  
-> built with **Next.js**, **TypeScript**, and **TailwindCSS**,  
-> fully supporting Arabic, offline usage, and modern PWA features.
-
----
-
-## 📖 Overview
-
-This project was fully migrated from **Flutter** to **Next.js (TypeScript)**,  
-following a structured 7-phase migration plan to deliver a modern, fast, and production-ready web experience.
-
 ---
 
 ## ✅ Completed Phases (1 → 7)
@@ -232,3 +211,4 @@ We welcome all contributions and feedback!
 Released under the **GNU General Public License v3.0**  
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
+

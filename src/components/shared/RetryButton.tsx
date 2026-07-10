@@ -14,7 +14,7 @@ export default function RetryButton() {
   return (
     <button
       onClick={handleRetry}
-      className="w-full inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+       className="w-full inline-flex items-center justify-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
     >
       <svg
         className="w-5 h-5 ml-2"
