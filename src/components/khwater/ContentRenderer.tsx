@@ -1,9 +1,6 @@
-// ContentRenderer component for displaying Khwater content
-// Renders titles, texts, ayahs based on item.order or item.detailedOrder array
-
 'use client';
 
-import { KhwaterItem, DetailedOrderItem } from '@/lib/types/khwater';
+import { KhwaterItem, ContentType } from '@/lib/types/khwater';
 import Title from './Title';
 import Subtitle from './Subtitle';
 import Text from './Text';
@@ -14,100 +11,34 @@ interface ContentRendererProps {
   item: KhwaterItem;
 }
 
+function resolveOrder(item: KhwaterItem): ContentType[] {
+  if (item.detailedOrder && item.detailedOrder.length > 0) {
+    return item.detailedOrder.map((o) => o.type);
+  }
+  return item.order as ContentType[];
+}
+
 export default function ContentRenderer({ item }: ContentRendererProps) {
-  const renderContentByOrder = () => {
-    const shouldUseDetailedOrder = item.detailedOrder && item.detailedOrder.length > 0;
-
-    if (shouldUseDetailedOrder) {
-      return renderWithDetailedOrder(item.detailedOrder!);
-    } else {
-      return renderWithSimpleOrder(item.order);
-    }
-  };
-
-  const renderWithDetailedOrder = (detailedOrder: DetailedOrderItem[]) => {
-    return detailedOrder.map((orderItem, index) => {
-      const { type } = orderItem;
-
-      switch (type) {
-        case 'title':
-          if (item.title) {
-            return <Title key={`title-${index}`} title={item.title} />;
-          }
-          return null;
-
-        case 'subtitle':
-          if (item.subtitle) {
-            return <Subtitle key={`subtitle-${index}`} subtitle={item.subtitle} />;
-          }
-          return null;
-
-        case 'text':
-          if (item.text) {
-            return <Text key={`text-${index}`} text={item.text} />;
-          }
-          return null;
-
-        case 'ayah':
-          if (item.ayah) {
-            return <Ayah key={`ayah-${index}`} ayah={item.ayah} />;
-          }
-          return null;
-
-        case 'footer':
-          if (item.footer) {
-            return <Footer key={`footer-${index}`} footer={item.footer} />;
-          }
-          return null;
-
-        default:
-          return null;
-      }
-    });
-  };
-
-  const renderWithSimpleOrder = (order: string[]) => {
-    return order.map((type, index) => {
-      switch (type) {
-        case 'title':
-          if (item.title) {
-            return <Title key={`title-${index}`} title={item.title} />;
-          }
-          return null;
-
-        case 'subtitle':
-          if (item.subtitle) {
-            return <Subtitle key={`subtitle-${index}`} subtitle={item.subtitle} />;
-          }
-          return null;
-
-        case 'text':
-          if (item.text) {
-            return <Text key={`text-${index}`} text={item.text} />;
-          }
-          return null;
-
-        case 'ayah':
-          if (item.ayah) {
-            return <Ayah key={`ayah-${index}`} ayah={item.ayah} />;
-          }
-          return null;
-
-        case 'footer':
-          if (item.footer) {
-            return <Footer key={`footer-${index}`} footer={item.footer} />;
-          }
-          return null;
-
-        default:
-          return null;
-      }
-    });
-  };
+  const order = resolveOrder(item);
 
   return (
     <div className="content-renderer">
-      {renderContentByOrder()}
+      {order.map((type, index) => {
+        switch (type) {
+          case 'title':
+            return item.title ? <Title key={`title-${index}`} title={item.title} /> : null;
+          case 'subtitle':
+            return item.subtitle ? <Subtitle key={`subtitle-${index}`} subtitle={item.subtitle} /> : null;
+          case 'text':
+            return item.text ? <Text key={`text-${index}`} text={item.text} /> : null;
+          case 'ayah':
+            return item.ayah ? <Ayah key={`ayah-${index}`} ayah={item.ayah} /> : null;
+          case 'footer':
+            return item.footer ? <Footer key={`footer-${index}`} footer={item.footer} /> : null;
+          default:
+            return null;
+        }
+      })}
     </div>
   );
 }

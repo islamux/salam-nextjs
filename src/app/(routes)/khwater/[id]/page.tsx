@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getChapterData, getAllChapterIds } from '@/lib/data/khwater-service';
 import dynamic from 'next/dynamic';
-import { translations } from '@/lib/translations';
+import { translations, SITE_URL } from '@/lib/translations';
 import {
   SkeletonContentItem,
   SkeletonButton,
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps) {
     openGraph: {
       title: translations.chapter.contentTitle(id),
       description: translations.share.readChapter(id),
-      url: `https://elm-app.vercel.app/khwater/${id}`,
+      url: `${SITE_URL}/khwater/${id}`,
       siteName: translations.app.nameWithSubtitle,
       locale: 'ar_SA',
       type: 'article',
@@ -64,11 +64,14 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
   if (!items?.length) notFound();
 
   const currentId = Number(id);
-  const hasPrevious = currentId > 1;
-  const hasNext = currentId < 29;
+  const allIds = await getAllChapterIds();
+  const totalChapters = allIds.length;
+  const lastNumericId = Math.max(...allIds.filter(i => !isNaN(Number(i))).map(Number));
+  const hasPrevious = currentId > 0;
+  const hasNext = currentId < lastNumericId;
 
   return (
-    <main className="min-h-screen p-6 max-w-4xl mx-auto">
+    <main className="min-h-screen p-4 sm:p-8 max-w-4xl mx-auto">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -83,13 +86,13 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
               '@type': 'Book',
               position: currentId,
               name: translations.chapter.title(id),
-              url: `https://elm-app.vercel.app/khwater/${id}`,
+              url: `${SITE_URL}/khwater/${id}`,
               text: items.slice(0, 3).map((item) => item.text).filter(Boolean).join(' '),
             },
             position: currentId,
-            numberOfPages: 29,
-            url: `https://elm-app.vercel.app/khwater/${id}`,
-            mainEntityOfPage: `https://elm-app.vercel.app/khwater/${id}`,
+            numberOfPages: totalChapters,
+            url: `${SITE_URL}/khwater/${id}`,
+            mainEntityOfPage: `${SITE_URL}/khwater/${id}`,
             keywords: 'كتاب خواطر  ',
           }),
         }}
@@ -100,8 +103,8 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
           <span className="text-sm text-gray-600 dark:text-gray-400">{translations.chapter.pageTitle(Number(id))}</span>
           <ShareButton chapterId={id} chapterTitle={translations.chapter.title(id)} />
         </div>
-        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-          <div className="bg-blue-600 h-2 rounded-full transition-all duration-300" style={{ width: `${(currentId / 29) * 100}%` }} />
+        <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-1">
+          <div className="bg-amber-600 h-1 rounded-full transition-all duration-300 ease-out-quart" style={{ width: `${((currentId + 1) / totalChapters) * 100}%` }} />
         </div>
       </div>
 
@@ -109,8 +112,8 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
         <h1 className="arabic-title text-4xl font-bold mb-4">{translations.chapter.pageHeader(Number(id))}</h1>
       </header>
 
-      <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
-        <div className="space-y-8">
+      <article className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 sm:p-10">
+        <div className="space-y-6">
           {items.map((item, index) => (
             <div key={index} className="pb-6 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
               <ContentRenderer item={item} />
@@ -132,7 +135,7 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
         </div>
         <div>
           {hasNext && (
-            <Link href={`/khwater/${currentId + 1}`} className="inline-flex items-center px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 rounded-lg transition-colors" aria-label={translations.chapter.ariaNext(currentId + 1)}>
+              <Link href={`/khwater/${currentId + 1}`} className="inline-flex items-center px-6 py-3 bg-amber-600 text-white hover:bg-amber-700 rounded-lg transition-colors" aria-label={translations.chapter.ariaNext(currentId + 1)}>
               {translations.chapter.next}
               <svg className="w-5 h-5 ml-2 rtl:ml-0 rtl:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

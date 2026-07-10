@@ -33,7 +33,7 @@ export const translations = {
     keywords: (id: string | number) => `كتاب خواطر, فصل ${id}, نصوص إسلامية`,
 
     // Additional chapter page strings
-    pageTitle: (id: number) => `الفصل ${id} من 29`,
+    pageTitle: (id: number) => `الفصل ${id} من 34`,
     pageHeader: (id: number) => `الفصل ${id}`,
     ariaNavigate: 'تنقل بين الفصول',
     ariaPrevious: (num: number) => `انتقل إلى الفصل ${num}`,
@@ -118,6 +118,8 @@ export const translations = {
     menuToggle: 'قائمة',
   },
 } as const;
+
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://elm-app.vercel.app';
 
 // Helper type for translation keys
 export type TranslationKey = keyof typeof translations;

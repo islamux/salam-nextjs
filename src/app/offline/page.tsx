@@ -30,8 +30,8 @@ export default function OfflinePage() {
           <HomeButton />
         </div>
 
-        <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-          <p className="text-sm text-blue-700 dark:text-blue-300">
+        <div className="mt-8 p-4 bg-amber-50 dark:bg-amber-900/10 rounded-lg">
+          <p className="text-sm text-amber-700 dark:text-amber-300">
             {offline.cachedContent}
           </p>
         </div>

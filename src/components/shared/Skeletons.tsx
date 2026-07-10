@@ -1,12 +1,5 @@
 'use client';
 
-// Reusable skeleton components following DRY principle
-// Eliminates duplication across loading states
-
-// =============================================================================
-// BASE SKELETON COMPONENT
-// =============================================================================
-
 export interface SkeletonProps {
   className?: string;
   width?: string | number;
@@ -14,51 +7,38 @@ export interface SkeletonProps {
   rounded?: boolean | 'full' | string;
 }
 
-// Base skeleton element with customizable dimensions
 export function Skeleton({
   className: classNameProp = '',
   width: widthProp,
   height: heightProp,
   rounded: roundedProp = false,
-}: {
-  className?: string;
-  width?: string | number;
-  height?: string | number;
-  rounded?: boolean | 'full' | string;
-}) {
-  const className = classNameProp;
-  const width = widthProp;
-  const height = heightProp;
-  const rounded = roundedProp;
+}: SkeletonProps) {
   const style = {
-    width: typeof width === 'number' ? `${width}px` : width,
-    height: typeof height === 'number' ? `${height}px` : height,
+    width: typeof widthProp === 'number' ? `${widthProp}px` : widthProp,
+    height: typeof heightProp === 'number' ? `${heightProp}px` : heightProp,
   };
 
-  const roundedClass = rounded === 'full'
+  const roundedClass = roundedProp === 'full'
     ? 'rounded-full'
-    : rounded
+    : roundedProp
       ? 'rounded-lg'
       : '';
 
   return (
     <div
-      className={`bg-gray-300 dark:bg-gray-700 animate-pulse ${roundedClass} ${className}`}
+      className={`relative overflow-hidden bg-gray-200 dark:bg-gray-800 ${roundedClass} ${classNameProp}`}
       style={style}
-    />
+    >
+      <div className="absolute inset-0 skeleton-shimmer" />
+    </div>
   );
 }
-
-// =============================================================================
-// TEXT SKELETON COMPONENTS
-// =============================================================================
 
 export interface SkeletonTextProps {
   lines?: number;
   className?: string;
 }
 
-// Text line skeleton
 export function SkeletonText({
   lines = 1,
   className = '',
@@ -82,7 +62,6 @@ export interface SkeletonTitleProps {
   width?: string | number;
 }
 
-// Title skeleton (larger text)
 export function SkeletonTitle({
   className = '',
   width = '60%',
@@ -97,23 +76,18 @@ export function SkeletonTitle({
   );
 }
 
-// =============================================================================
-// CARD SKELETON COMPONENTS
-// =============================================================================
-
 export type SkeletonCardProps = object;
 
-// Card skeleton for chapter cards
 export function SkeletonCard() {
   return (
-    <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700">
-      <div className="flex items-center justify-between mb-4">
-        <Skeleton width={40} height={40} rounded="full" />
-        <Skeleton width={32} height={32} rounded="full" />
+    <div className="p-5 bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+      <div className="flex items-center justify-between mb-3">
+        <Skeleton width={36} height={36} rounded="full" />
+        <Skeleton width={28} height={28} rounded="full" />
       </div>
       <div className="space-y-2">
-        <Skeleton height={24} rounded />
-        <Skeleton height={16} width="50%" rounded />
+        <Skeleton height={20} width="70%" rounded />
+        <Skeleton height={14} width="50%" rounded />
       </div>
     </div>
   );
@@ -121,10 +95,9 @@ export function SkeletonCard() {
 
 export type SkeletonSearchResultProps = object;
 
-// Search result skeleton
 export function SkeletonSearchResult() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 border border-gray-100 dark:border-gray-700">
       <div className="flex justify-between items-center mb-4">
         <Skeleton width="25%" height={24} rounded />
         <Skeleton width="33%" height={24} rounded />
@@ -141,13 +114,8 @@ export function SkeletonSearchResult() {
   );
 }
 
-// =============================================================================
-// CONTENT SKELETON COMPONENTS
-// =============================================================================
-
 export type SkeletonContentItemProps = object;
 
-// Content item skeleton (for chapter content)
 export function SkeletonContentItem() {
   return (
     <div className="space-y-4">
@@ -158,16 +126,11 @@ export function SkeletonContentItem() {
   );
 }
 
-// =============================================================================
-// PROGRESS SKELETON COMPONENTS
-// =============================================================================
-
 export interface SkeletonProgressProps {
   showLabel?: boolean;
   labelWidth?: string;
 }
 
-// Progress bar skeleton
 export function SkeletonProgress({
   showLabel = false,
   labelWidth = '25%',
@@ -178,20 +141,17 @@ export function SkeletonProgress({
         {showLabel && <Skeleton width={labelWidth} height={20} rounded />}
         <Skeleton width={96} height={40} rounded />
       </div>
-      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-        <div className="bg-gray-300 dark:bg-gray-600 h-2 rounded-full animate-pulse" style={{ width: '50%' }} />
+      <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2 overflow-hidden">
+        <div className="relative h-2 w-1/2 overflow-hidden">
+          <div className="absolute inset-0 skeleton-shimmer" />
+        </div>
       </div>
     </div>
   );
 }
 
-// =============================================================================
-// NAVIGATION SKELETON COMPONENTS
-// =============================================================================
-
 export type SkeletonNavigationProps = object;
 
-// Navigation skeleton
 export function SkeletonNavigation() {
   return (
     <div className="flex justify-between items-center mt-12">
@@ -201,16 +161,11 @@ export function SkeletonNavigation() {
   );
 }
 
-// =============================================================================
-// BUTTON SKELETON COMPONENTS
-// =============================================================================
-
 export interface SkeletonButtonProps {
   width?: number;
   height?: number;
 }
 
-// Button skeleton
 export function SkeletonButton({
   width = 192,
   height = 48,
@@ -218,16 +173,11 @@ export function SkeletonButton({
   return <Skeleton width={width} height={height} rounded />;
 }
 
-// =============================================================================
-// GRID SKELETON COMPONENTS
-// =============================================================================
-
 export interface SkeletonGridProps {
   count?: number;
   className?: string;
 }
 
-// Grid of skeleton cards
 export function SkeletonGrid({
   count = 12,
   className = '',
@@ -241,34 +191,26 @@ export function SkeletonGrid({
   );
 }
 
-// =============================================================================
-// SEARCH SKELETON COMPONENTS
-// =============================================================================
-
 export type SkeletonSearchInputProps = object;
 
-// Search input skeleton
 export function SkeletonSearchInput() {
   return (
-    <div className="h-12 bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse" />
+    <div className="h-12 relative overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800">
+      <div className="absolute inset-0 skeleton-shimmer" />
+    </div>
   );
 }
-
-// =============================================================================
-// HERO SKELETON COMPONENTS
-// =============================================================================
 
 export interface SkeletonHeroProps {
   showButton?: boolean;
 }
 
-// Hero section skeleton
 export function SkeletonHero({
   showButton = true,
 }: SkeletonHeroProps) {
   return (
     <section className="text-center mb-16">
-      <div className="mb-8 animate-pulse">
+      <div className="mb-8">
         <SkeletonTitle className="mb-6 mx-auto" width="75%" />
         <Skeleton height={32} width="50%" rounded className="mb-4 mx-auto" />
         <Skeleton height={24} width="33%" rounded className="mx-auto" />
@@ -283,21 +225,18 @@ export function SkeletonHero({
   );
 }
 
-// =============================================================================
-// SECTION SKELETON COMPONENTS
-// =============================================================================
-
 export interface SkeletonSectionTitleProps {
   width?: string;
 }
 
-// Section title skeleton
 export function SkeletonSectionTitle({
   width = '25%',
 }: SkeletonSectionTitleProps) {
   return (
     <h2 className="text-2xl font-bold mb-8 text-center">
-      <Skeleton height={40} width={width} rounded className="mx-auto" />
+      <div className="mx-auto relative overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800" style={{ width, height: 40 }}>
+        <div className="absolute inset-0 skeleton-shimmer" />
+      </div>
     </h2>
   );
 }

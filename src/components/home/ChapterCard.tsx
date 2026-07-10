@@ -6,48 +6,47 @@ interface ChapterCardProps {
 }
 
 export function ChapterCard({ khwaterChapter }: ChapterCardProps) {
+  const chapterNum = Number(khwaterChapter.id);
 
   return (
     <Link
       key={khwaterChapter.id}
       href={`/khwater/${khwaterChapter.id}`}
-      className='group block p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 dark:bg-blue-700 hover:border-blue-300 dark:hover:border-blue-600'
+      className="group block p-5 bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md hover:border-amber-200 dark:hover:border-amber-800 transition-all duration-200"
     >
-
-      <div className='flex items-center justify-between mb-4'>
-        <span className='text-3xl font-bold text-blue-600 dark:text-blue-400'>
-          {khwaterChapter.id}
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-3xl font-bold text-amber-600 dark:text-amber-400 tabular-nums">
+          {chapterNum}
         </span>
-        <div className='w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center group-hover:scale-110 transition-transform'>
+        <div className="w-9 h-9 rounded-full bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center group-hover:bg-amber-100 dark:group-hover:bg-amber-900/40 transition-colors">
           <svg
-            className='w-5 h-5 text-blue-600 dark:text-blue-400'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
+            className="w-4 h-4 text-amber-500 dark:text-amber-400 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
             <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
+              strokeLinecap="round"
+              strokeLinejoin="round"
               strokeWidth={2}
-              d='M9 517 7-7 7'
+              d="M9 5l7 7-7 7"
             />
           </svg>
         </div>
       </div>
-      <div className='mb-2'>
-        <h3 className='text-lg font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
-          {translations.home.chapter(Number(khwaterChapter.id))}
+      <div className="mb-2">
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+          {translations.home.chapter(chapterNum)}
         </h3>
         {khwaterChapter.chapterTitle && (
-          <p className='text-sm text-gray-600 dark:text-gray-400 mt-1'>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
             {khwaterChapter.chapterTitle}
           </p>
         )}
       </div>
-      <p className='text-sm text-gray-600 dark:text-gray-400'>
+      <p className="text-xs text-gray-400 dark:text-gray-500">
         {translations.home.itemCount(khwaterChapter.itemCount)}
       </p>
-
     </Link>
   );
 }

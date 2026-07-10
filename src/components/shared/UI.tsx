@@ -79,7 +79,7 @@ export function Button({
 }: ButtonProps) {
   const variantClasses = {
     primary:
-      'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700',
+      'bg-amber-600 text-white hover:bg-amber-700 dark:bg-amber-600 dark:hover:bg-amber-700',
     secondary:
       'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700',
     ghost:
@@ -208,7 +208,7 @@ export function Text({
   const variantClasses = {
     primary: 'text-gray-900 dark:text-gray-100',
     secondary: 'text-gray-600 dark:text-gray-400',
-    muted: 'text-gray-500 dark:text-gray-500',
+    muted: 'text-gray-500 dark:text-gray-400',
   };
 
   const sizeClasses = {
@@ -242,7 +242,7 @@ export function Badge({
 }: BadgeProps) {
   const variantClasses = {
     default: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300',
-    primary: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
+    primary: 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300',
     success: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
     warning: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
     error: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300',

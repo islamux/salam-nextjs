@@ -17,7 +17,7 @@ export default function Footer() {
           <p className="text-gray-600 dark:text-gray-400 mb-4">
             {footer.tagline}
           </p>
-          <div className="flex justify-center items-center space-x-6 rtl:space-x-reverse text-sm text-gray-500 dark:text-gray-500">
+          <div className="flex justify-center items-center space-x-6 rtl:space-x-reverse text-sm text-gray-500 dark:text-gray-400">
             <span>{footer.copyright}</span>
             <span>•</span>
             <span>{footer.rightsReserved}</span>

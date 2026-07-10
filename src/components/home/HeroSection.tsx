@@ -15,7 +15,7 @@ export function HeroSection({ chaptersCount }: HeroSectionProps) {
         <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
           {translations.home.subtitle}
         </p>
-        <p className="text-gray-500 dark:text-gray-500">
+        <p className="text-gray-500 dark:text-gray-400">
           {translations.home.introductionCount(chaptersCount)}
         </p>
       </div>
@@ -23,7 +23,7 @@ export function HeroSection({ chaptersCount }: HeroSectionProps) {
       <div className="flex justify-center space-x-4 rtl: space-x-reverse">
         <Link
           href={"/search"}
-          className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
         >
           <svg
             className="w-5 h-5 ml-2 rtl:ml-0 rtl:mr-2"

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ar_SA",
-    url: "https://elm-app.vercel.app",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://elm-app.vercel.app",
     title: translations.app.nameWithSubtitle,
     description: translations.app.description,
     siteName: translations.app.name,

@@ -1,158 +1,183 @@
 {
-  "totalChapters": 29,
-  "version": "3.1.0",
-  "generated": "202511-11T18:28:29.381796Z",
+  "totalChapters": 34,
+  "version": "4.0.0",
+  "generated": "2026-07-10T19:03:34Z",
   "chapters": [
     {
       "id": "0",
-      "items": 3,
-      "sizeKB": 4.7734375
+      "items": 5,
+      "sizeKB": 5.0146484375
     },
     {
       "id": "1",
-      "items": 29,
-      "sizeKB": 45.8623046875
+      "items": 57,
+      "sizeKB": 39.2744140625
     },
     {
       "id": "2",
-      "items": 13,
-      "sizeKB": 31.01171875
+      "items": 30,
+      "sizeKB": 26.4619140625
     },
     {
       "id": "3",
-      "items": 13,
-      "sizeKB": 16.275390625
+      "items": 18,
+      "sizeKB": 12.11328125
     },
     {
       "id": "4",
-      "items": 13,
-      "sizeKB": 24.60546875
+      "items": 30,
+      "sizeKB": 19.8017578125
     },
     {
       "id": "5",
-      "items": 12,
-      "sizeKB": 13.9091796875
+      "items": 17,
+      "sizeKB": 11.32421875
     },
     {
       "id": "6",
-      "items": 5,
-      "sizeKB": 7.5283203125
+      "items": 6,
+      "sizeKB": 6.5205078125
     },
     {
       "id": "7",
-      "items": 11,
-      "sizeKB": 12.6279296875
+      "items": 14,
+      "sizeKB": 10.51953125
     },
     {
       "id": "8",
-      "items": 10,
-      "sizeKB": 12.1572265625
+      "items": 14,
+      "sizeKB": 9.908203125
     },
     {
       "id": "9",
-      "items": 10,
-      "sizeKB": 19.0634765625
+      "items": 20,
+      "sizeKB": 16.3720703125
     },
     {
       "id": "10",
-      "items": 7,
-      "sizeKB": 9.1171875
+      "items": 12,
+      "sizeKB": 7.36328125
     },
     {
       "id": "11",
-      "items": 20,
-      "sizeKB": 24.8564453125
+      "items": 32,
+      "sizeKB": 19.09765625
     },
     {
       "id": "12",
-      "items": 29,
-      "sizeKB": 38.5556640625
+      "items": 41,
+      "sizeKB": 30.3837890625
     },
     {
       "id": "13",
-      "items": 13,
-      "sizeKB": 24.779296875
+      "items": 35,
+      "sizeKB": 20.3857421875
     },
     {
       "id": "14",
-      "items": 16,
-      "sizeKB": 25.6181640625
+      "items": 32,
+      "sizeKB": 21.01953125
     },
     {
       "id": "15",
-      "items": 17,
-      "sizeKB": 21.8212890625
+      "items": 23,
+      "sizeKB": 17.6220703125
     },
     {
       "id": "16",
-      "items": 26,
-      "sizeKB": 55.4052734375
+      "items": 37,
+      "sizeKB": 36.1318359375
     },
     {
       "id": "17",
-      "items": 21,
-      "sizeKB": 27.0244140625
+      "items": 34,
+      "sizeKB": 21.306640625
     },
     {
       "id": "18",
-      "items": 35,
-      "sizeKB": 71.3232421875
+      "items": 97,
+      "sizeKB": 49.13671875
     },
     {
       "id": "19",
-      "items": 17,
-      "sizeKB": 42.0791015625
+      "items": 44,
+      "sizeKB": 30.1025390625
     },
     {
       "id": "20",
-      "items": 35,
-      "sizeKB": 53.9443359375
+      "items": 80,
+      "sizeKB": 47.31640625
     },
     {
       "id": "21",
-      "items": 26,
-      "sizeKB": 49.2236328125
+      "items": 67,
+      "sizeKB": 41.66796875
     },
     {
       "id": "22",
-      "items": 16,
-      "sizeKB": 37.13671875
+      "items": 29,
+      "sizeKB": 32.2265625
     },
     {
       "id": "23",
-      "items": 18,
-      "sizeKB": 50.1904296875
+      "items": 57,
+      "sizeKB": 47.091796875
     },
     {
       "id": "24",
-      "items": 22,
-      "sizeKB": 39.021484375
+      "items": 40,
+      "sizeKB": 34.8837890625
     },
     {
       "id": "25",
-      "items": 19,
-      "sizeKB": 31.9228515625
+      "items": 62,
+      "sizeKB": 39.19140625
     },
     {
       "id": "26",
-      "items": 11,
-      "sizeKB": 35.978515625
+      "items": 56,
+      "sizeKB": 34.4189453125
     },
     {
       "id": "27",
-      "items": 21,
-      "sizeKB": 49.2314453125
+      "items": 60,
+      "sizeKB": 42.7490234375
     },
     {
       "id": "28",
-      "items": 8,
-      "sizeKB": 11.22265625
+      "items": 20,
+      "sizeKB": 5.9541015625
+    },
+    {
+      "id": "29",
+      "items": 29,
+      "sizeKB": 11.5009765625
+    },
+    {
+      "id": "30",
+      "items": 10,
+      "sizeKB": 2.767578125
+    },
+    {
+      "id": "31",
+      "items": 12,
+      "sizeKB": 3.9970703125
+    },
+    {
+      "id": "32",
+      "items": 9,
+      "sizeKB": 2.744140625
+    },
+    {
+      "id": "33",
+      "items": 44,
+      "sizeKB": 31.29296875
     }
   ],
   "summary": {
-    "totalChapters": 29,
-    "totalItems": 496,
-    "totalSizeKB": "886.27",
-    "averageSizeKB": "30.56"
+    "totalChapters": 34,
+    "totalItems": 1173,
+    "totalSizeKB": "787.66",
+    "averageSizeKB": "23.17"
   }
 }
