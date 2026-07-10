@@ -58,7 +58,8 @@ html {
 
 .arabic-text {
   font-family: var(--font-amiri), serif;
-  line-height: 2;
+  font-size: 1.125rem;
+  line-height: 2.2;
   letter-spacing: 0.5px;
   max-width: 65ch;
 }
@@ -72,9 +73,32 @@ html {
 
 .arabic-ayah {
   font-family: var(--font-amiri), serif;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   opacity: 0.9;
-  line-height: 2;
+  line-height: 2.2;
+}
+
+/* Book page background */
+.bg-book-page {
+  background-color: oklch(0.98 0.005 82);
+  background-image:
+    linear-gradient(to bottom, oklch(0.99 0.003 82) 0%, transparent 10%),
+    linear-gradient(to top, oklch(0.97 0.005 82) 0%, transparent 30%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .bg-book-page {
+    background-color: oklch(0.16 0.005 82);
+    background-image:
+      linear-gradient(to bottom, oklch(0.17 0.004 82) 0%, transparent 10%),
+      linear-gradient(to top, oklch(0.15 0.005 82) 0%, transparent 30%);
+  }
+}
+
+/* Prose reader for content articles */
+.prose-reader {
+  max-width: 58ch;
+  margin: 0 auto;
 }
 
 .bg-islamic-pattern {
