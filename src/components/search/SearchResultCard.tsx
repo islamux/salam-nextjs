@@ -16,7 +16,7 @@ export function SearchResultCard({ result }: SearchResultProps) {
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-4 bg-gray-50/50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-800">
         <div className="flex items-center gap-3">
-          <span className="font-amiri text-xl font-bold text-amber-600 dark:text-amber-400">
+          <span className="font-arabic text-xl font-bold text-amber-600 dark:text-amber-400">
             {result.chapterId}
           </span>
           <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">
@@ -42,7 +42,7 @@ export function SearchResultCard({ result }: SearchResultProps) {
       <div className="divide-y divide-gray-50 dark:divide-gray-800/50">
         {result.items.map((item, index) => (
           <div key={index} className="px-6 py-5 hover:bg-amber-50/30 dark:hover:bg-amber-900/5 transition-colors">
-            <ContentRenderer item={item} />
+            <ContentRenderer item={item} itemIndex={index} />
           </div>
         ))}
       </div>

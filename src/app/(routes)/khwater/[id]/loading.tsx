@@ -11,7 +11,7 @@ export default function Loading() {
 
       <div className="max-w-3xl mx-auto px-6 sm:px-12 py-8 sm:py-16">
         <header className="text-center mb-16">
-          <div className="text-6xl font-amiri font-bold text-amber-600/20 dark:text-amber-400/10 select-none leading-none block mb-4 relative overflow-hidden w-20 h-24 mx-auto rounded-lg">
+          <div className="text-6xl font-arabic font-bold text-amber-600/20 dark:text-amber-400/10 select-none leading-none block mb-4 relative overflow-hidden w-20 h-24 mx-auto rounded-lg">
             <div className="absolute inset-0 skeleton-shimmer bg-gray-200 dark:bg-gray-800" />
           </div>
           <SkeletonTitle width="33%" className="mx-auto mb-3" />

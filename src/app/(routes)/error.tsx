@@ -22,7 +22,7 @@ export default function RoutesError({ error, reset }: ErrorPageProps) {
           </svg>
         </div>
 
-        <h1 className="font-amiri text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">حدث خطأ غير متوقع</h1>
+        <h1 className="font-arabic text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">حدث خطأ غير متوقع</h1>
         <p className="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed text-sm">
           نأسف على هذا الخطأ. يرجى المحاولة مرة أخرى.
         </p>

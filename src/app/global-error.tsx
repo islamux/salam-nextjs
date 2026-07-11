@@ -25,7 +25,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
               </div>
             </div>
 
-            <h1 className="font-amiri text-2xl font-bold mb-3">
+            <h1 className="font-arabic text-2xl font-bold mb-3">
               حدث خطأ غير متوقع
             </h1>
             <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">

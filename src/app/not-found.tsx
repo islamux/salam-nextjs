@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <main className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-4 bg-book-page" dir="rtl">
       <div className="max-w-sm w-full text-center">
-        <span className="font-amiri text-8xl font-bold text-amber-600/10 dark:text-amber-400/05 select-none leading-none block mb-2" aria-hidden="true">
+        <span className="font-arabic text-8xl font-bold text-amber-600/10 dark:text-amber-400/05 select-none leading-none block mb-2" aria-hidden="true">
           ٤٠٤
         </span>
 
@@ -15,7 +15,7 @@ export default function NotFound() {
           </svg>
         </div>
 
-        <h1 className="font-amiri text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">الصفحة غير موجودة</h1>
+        <h1 className="font-arabic text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">الصفحة غير موجودة</h1>
         <p className="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed text-sm">
           الصفحة التي تبحث عنها غير موجودة. ربما تم نقلها أو حذفها.
         </p>

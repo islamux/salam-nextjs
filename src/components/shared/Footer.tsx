@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
           {/* Column 1: Book info */}
           <div className="text-center sm:text-right">
-            <h3 className="font-amiri text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+            <h3 className="font-arabic text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
               {footer.bookName}
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">

@@ -15,7 +15,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/home" className="flex items-center space-x-2 rtl:space-x-reverse">
-          <span className="text-2xl font-bold font-amiri text-gray-900 dark:text-gray-100">{app.name}</span>
+          <span className="text-2xl font-bold font-arabic text-gray-900 dark:text-gray-100">{app.name}</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">

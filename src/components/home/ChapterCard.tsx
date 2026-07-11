@@ -45,7 +45,7 @@ export function ChapterCard({ khwaterChapter, featured = false }: ChapterCardPro
 
       <div className={`relative p-5 ${featured ? 'p-6 sm:p-8' : ''}`}>
         <div className="flex items-center justify-between mb-3">
-          <span className={`font-amiri font-bold tabular-nums transition-colors
+          <span className={`font-arabic font-bold tabular-nums transition-colors
             ${featured
               ? 'text-5xl sm:text-6xl text-amber-600/30 dark:text-amber-400/20'
               : 'text-3xl text-amber-600 dark:text-amber-400 group-hover:text-amber-500'

@@ -42,7 +42,7 @@ function SearchContent() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
-      <h1 className="font-amiri text-3xl font-bold mb-8 text-center">{search.title}</h1>
+      <h1 className="font-arabic text-3xl font-bold mb-8 text-center">{search.title}</h1>
 
       <SearchForm query={query} />
 

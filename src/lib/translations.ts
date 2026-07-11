@@ -105,7 +105,7 @@ export const translations = {
     title: 'خواطر - جميع الفصول',
     bookName: 'كتاب خواطر',
     subtitle: 'خواطر عن الدين والحياة',
-    introductionCount: (count: number) => `${count} مقدمة`,
+    introductionCount: (count: number) => `${count} فصلاً`,
     searchInContent: 'بحث في المحتوى',
     allChapters: 'جميع الفصول',
     chapter: (id: number) => `الفصل ${id}`,

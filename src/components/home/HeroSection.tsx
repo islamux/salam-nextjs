@@ -9,13 +9,13 @@ export function HeroSection({ chaptersCount }: HeroSectionProps) {
   return (
     <section className="relative text-center mb-20 pt-12 pb-16 overflow-hidden">
       {/* Decorative number */}
-      <span className="absolute top-0 left-1/2 -translate-x-1/2 text-[16rem] font-amiri font-bold text-amber-600/[0.03] dark:text-amber-400/[0.02] select-none leading-none pointer-events-none" aria-hidden="true">
+      <span className="absolute top-0 left-1/2 -translate-x-1/2 text-[16rem] font-arabic font-bold text-amber-600/[0.03] dark:text-amber-400/[0.02] select-none leading-none pointer-events-none" aria-hidden="true">
         {chaptersCount}
       </span>
 
       <div className="relative">
         <div className="mb-6">
-          <span className="inline-block text-5xl sm:text-7xl font-amiri font-bold text-gray-900 dark:text-gray-50 leading-tight tracking-wide">
+          <span className="inline-block text-5xl sm:text-7xl font-arabic font-bold text-gray-900 dark:text-gray-50 leading-tight tracking-wide">
             {translations.home.bookName}
           </span>
         </div>

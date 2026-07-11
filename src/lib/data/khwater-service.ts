@@ -1,5 +1,6 @@
 // Data service layer for Khwater data
 import { KhwaterItem } from '@/lib/types/khwater';
+import { findChapterTitle } from '@/lib/utils/clean-text';
 
 // Type for chapter metadata
 interface ChapterMetadata {
@@ -126,7 +127,7 @@ export const getAllChapters = async () => {
       return {
         id: chapter.id,
         title: `الفصل ${chapter.id}`,
-        chapterTitle: items[0]?.title?.split('\n')[0] || `الفصل ${chapter.id}`,
+        chapterTitle: findChapterTitle(items, chapter.id),
         description: `محتوى الفصل ${chapter.id}`,
         itemCount: items.length,
       };
