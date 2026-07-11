@@ -65,6 +65,8 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
   const hasPrevious = currentId > 0;
   const hasNext = currentId < lastNumericId;
 
+  const chapterTitle = items[0]?.title?.split('\n')[0].trim() || translations.chapter.pageHeader(currentId);
+
   return (
     <>
       <script
@@ -111,10 +113,10 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
               {currentId}
             </span>
             <h1 className="font-amiri text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-              {translations.chapter.pageHeader(currentId)}
+              {chapterTitle}
             </h1>
             <div className="flex items-center justify-center gap-4 text-sm text-gray-400 dark:text-gray-500">
-              <span>{translations.chapter.pageTitle(currentId)}</span>
+              <span>{translations.chapter.pageHeader(currentId)}</span>
               <span className="text-amber-300 dark:text-amber-600" aria-hidden="true">•</span>
               <ShareButton chapterId={id} chapterTitle={translations.chapter.title(id)} />
             </div>
