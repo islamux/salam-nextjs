@@ -29,7 +29,6 @@ export function useLocalStorage<T>(
   const [storedValue, setStoredValue] = useState<T>(initialValue);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Function to get value from localStorage
   const getValueFromStorage = useCallback((storageKey: string): T => {
     if (typeof window === 'undefined') {
       return initialValue;
@@ -42,24 +41,22 @@ export function useLocalStorage<T>(
         return initialValue;
       }
 
-      // Try to parse as JSON first
       if (item.startsWith('{') || item.startsWith('[')) {
         return JSON.parse(item);
       }
 
-      // If not JSON, return as plain string (for backward compatibility)
+      if (typeof initialValue === 'number') {
+        const parsed = Number(item);
+        return (isNaN(parsed) ? initialValue : parsed) as unknown as T;
+      }
+
+      if (typeof initialValue === 'boolean') {
+        return (item === 'true') as unknown as T;
+      }
+
       return item as unknown as T;
     } catch (error) {
       console.error(`Error reading localStorage key "${storageKey}":`, error);
-      // If JSON parsing fails, try to return as plain string
-      try {
-        const item = window.localStorage.getItem(storageKey);
-        if (item) {
-          return item as unknown as T;
-        }
-      } catch {
-        // Ignore
-      }
       return initialValue;
     }
   }, [initialValue]);
@@ -74,9 +71,11 @@ export function useLocalStorage<T>(
         // Save state
         setStoredValue(valueToStore);
 
-        // Save to localStorage
         if (typeof window !== 'undefined') {
-          window.localStorage.setItem(key, JSON.stringify(valueToStore));
+          const serialized = typeof valueToStore === 'object' && valueToStore !== null
+            ? JSON.stringify(valueToStore)
+            : String(valueToStore);
+          window.localStorage.setItem(key, serialized);
         }
       } catch (error) {
         console.error(`Error setting localStorage key "${key}":`, error);
