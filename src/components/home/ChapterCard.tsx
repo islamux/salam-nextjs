@@ -70,14 +70,12 @@ export function ChapterCard({ khwaterChapter, featured = false }: ChapterCardPro
         <div className="mb-2">
           <h3 className={`font-semibold text-gray-900 dark:text-gray-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors
             ${featured ? 'text-xl' : 'text-base'}`}>
-            {translations.home.chapter(chapterNum)}
+            {khwaterChapter.chapterTitle || translations.home.chapter(chapterNum)}
           </h3>
-          {khwaterChapter.chapterTitle && (
-            <p className={`text-gray-500 dark:text-gray-400 mt-1 line-clamp-2
-              ${featured ? 'text-sm leading-relaxed' : 'text-xs'}`}>
-              {khwaterChapter.chapterTitle}
-            </p>
-          )}
+          <p className={`text-gray-500 dark:text-gray-400 mt-1 line-clamp-2
+            ${featured ? 'text-sm leading-relaxed' : 'text-xs'}`}>
+            {translations.home.chapter(chapterNum)}
+          </p>
         </div>
 
         <p className="text-xs text-gray-400 dark:text-gray-500">
