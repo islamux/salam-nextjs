@@ -97,7 +97,6 @@ html {
 
 /* Prose reader for content articles */
 .prose-reader {
-  max-width: 58ch;
   margin: 0 auto;
 }
 

@@ -103,7 +103,7 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
           />
         </div>
 
-        <div className="max-w-3xl mx-auto px-6 sm:px-12 py-8 sm:py-16">
+        <div className="max-w-4xl lg:max-w-5xl xl:max-w-prose mx-auto px-4 sm:px-8 lg:px-12 py-8 sm:py-16">
 
           {/* Chapter header */}
           <header className="text-center mb-16">
