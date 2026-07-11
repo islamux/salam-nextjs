@@ -126,7 +126,12 @@ export default async function KhwaterChapterPage({ params }: PageProps) {
           <article className="prose-reader">
             {items.map((item, index) => (
               <div key={index}>
-                <ContentRenderer item={item} />
+                <ContentRenderer
+                  item={index === 0
+                    ? { ...item, order: item.order.filter(o => o !== 'title') }
+                    : item
+                  }
+                />
                 {index < items.length - 1 && (
                   <div className="flex items-center justify-center my-10" aria-hidden="true">
                     <span className="h-px flex-1 bg-gradient-to-l from-transparent via-gray-200 dark:via-gray-700 to-transparent" />
